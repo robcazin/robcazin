@@ -1,0 +1,30 @@
+{
+  "slug": "science",
+  "title": "Science",
+  "blurb": "Generative and physics-informed composition. Pieces drawn from acoustic phenomena, consciousness research, and mathematical form.",
+  "accent": "#0B64E0",
+  "tracks": [
+    {
+      "id": "science-awake",
+      "title": "Awake",
+      "kind": "audio",
+      "src": "/audio/science/awake.flac",
+      "notes": "Manifested at the height of COVID hysteria, in the summer of 2020 .",
+      "meta": { "format": "FLAC" }
+    },
+    {
+      "id": "science-covid",
+      "title": "COVID-19",
+      "kind": "audio",
+      "src": "/audio/science/covid19.m4a",
+      "meta": { "format": "m4a", "generative": true }
+    },
+    {
+      "id": "science-salience",
+      "title": "Salience",
+      "kind": "audio",
+      "src": "/audio/science/salience.flac",
+      "meta": { "format": "FLAC", "generative": true }
+    }
+  ]
+}

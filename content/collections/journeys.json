@@ -1,0 +1,44 @@
+{
+  "slug": "journeys",
+  "title": "Journeys",
+  "blurb": "Longer-form pieces — departures, returns, and passages through tonal and rhythmic space.",
+  "accent": "#B64703",
+  "tracks": [
+    {
+      "id": "journeys-return",
+      "title": "Return",
+      "kind": "audio",
+      "src": "/audio/journeys/return.mp3",
+      "year": 2020,
+      "notes": "Tonal exploration — departure and resolution.",
+      "meta": { "tuning": "A = 432 Hz", "generative": true }
+    },
+    {
+      "id": "journeys-inner-conflict",
+      "title": "Inner Conflict",
+      "kind": "audio",
+      "src": "/audio/journeys/innerconflictmix2.mp3",
+      "year": 2019,
+      "notes": "Rhythmic tension held in suspension.",
+      "meta": { "bpm": 92 }
+    },
+    {
+      "id": "journeys-hope-and-light",
+      "title": "Hope and Light",
+      "kind": "audio",
+      "src": "/audio/journeys/hope-and-light.mp3",
+      "year": 2014,
+      "notes": "Orchestral piece — placeholder copy; refine credits and notes.",
+      "meta": { "bpm": 72 }
+    },
+    {
+      "id": "film-music-monster-piano",
+      "title": "Monster Piano",
+      "kind": "audio",
+      "src": "/audio/journeys/monsterpiano.m4a",
+      "year": 2013,
+      "notes": "Prepared piano piece for theatrical underscore.",
+      "meta": { "generative": false }
+    }
+  ]
+}

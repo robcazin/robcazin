@@ -1,0 +1,33 @@
+{
+  "slug": "guitar-improv",
+  "title": "Guitar Improv",
+  "blurb": "Improvisation recordings \u2014 unedited, in the moment. Electric and acoustic, prepared and straight.",
+  "accent": "#CB8100",
+  "tracks": [
+    {
+      "id": "guitar-improv-2",
+      "title": "Guitar Improv II",
+      "kind": "video",
+      "src": "/video/rob-cazin-gtr2.mp4",
+      "year": 2016,
+      "notes": "Extended technique improvisation, electric guitar."
+    },
+    {
+      "id": "guitar-looping",
+      "title": "Looping",
+      "kind": "video",
+      "src": "/video/looping.mp4",
+      "year": 2017,
+      "notes": "Live loop station \u2014 building texture in real time."
+    },
+    {
+      "id": "guitar-spider-walk",
+      "title": "Spider Walk",
+      "kind": "audio",
+      "src": "/audio/spiderwalk.mp3",
+      "year": 2015,
+      "notes": "Fingerstyle study with extended harmonic movement.",
+      "meta": { "tuning": "DADGAD" }
+    }
+  ]
+}

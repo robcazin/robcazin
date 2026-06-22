@@ -1,0 +1,31 @@
+{
+  "slug": "film-music",
+  "title": "Film Music",
+  "blurb": "Scores and cues for film and moving image — orchestral, prepared, and electronic.",
+  "accent": "#5A1AFE",
+  "tracks": [
+    {
+        "id": "film-music-samuel-is-dreaming",
+        "title": "Samuel Is Dreaming",
+        "kind": "audio",
+        "src": "/audio/science/samuel-is-dreaming.flac",
+        "meta": { "format": "FLAC" }
+      },
+    {
+      "id": "film-music-if",
+      "title": "If",
+      "kind": "audio",
+      "src": "/audio/film-music/if.flac",
+      "meta": { "format": "FLAC" }
+    },
+    {
+      "id": "film-music-orkestra",
+      "title": "Orkestra",
+      "kind": "audio",
+      "src": "/audio/orkestra.mp3",
+      "year": 2018,
+      "notes": "Dense orchestral generative piece — placeholder placement; move or retitle as needed.",
+      "meta": { "generative": true, "tuning": "A = 440 Hz" }
+    }
+  ]
+}

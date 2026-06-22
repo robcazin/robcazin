@@ -1,0 +1,17 @@
+{
+  "slug": "animation",
+  "title": "Animation & Motion",
+  "blurb": "3D animation and motion work \u2014 from the Cubicomp and Softimage era through Director of 3D.",
+  "accent": "#3ad6a0",
+  "tracks": [
+    {
+      "id": "softimage-demo-1994",
+      "title": "Softimage Demo Reel (1994)",
+      "kind": "video",
+      "src": "/video/animation/softimage-demo-1994.mp4",
+      "year": 1994,
+      "notes": "Softimage product demo reel featuring Rob in interview segments about the software. Early 3D animation, Limelite / Director-of-3D era.",
+      "meta": { "software": "Softimage", "era": "1993\u201394" }
+    }
+  ]
+}

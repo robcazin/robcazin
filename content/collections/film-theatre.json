@@ -1,0 +1,26 @@
+{
+  "slug": "film-theatre",
+  "title": "Film, TV & Theatre",
+  "blurb": "Scoring and sound design for film, television, and live performance. Selected credits from a career spanning animation, documentary, and theatre.",
+  "accent": "#530000",
+  "tracks": [
+    {
+      "id": "fit-feathers-of-fire",
+      "title": "Feathers of Fire \u2014 Sound Design",
+      "kind": "audio",
+      "src": "/audio/journeys/hope-and-light.mp3",
+      "year": 2016,
+      "credits": "Sound design \u2014 dir. Hamid Rahmanian, puppet/illustration Syd Fini.",
+      "notes": "Shadow play adaptation of the Sufi epic Conference of the Birds. Premiered San Francisco 01.16.16, opened at BAM 02.05.16. (Placeholder audio \u2014 Rob to supply the real cue.)"
+    },
+    {
+      "id": "ftt-sangam",
+      "title": "Sangam",
+      "kind": "audio",
+      "src": "/audio/journeys/monsterpiano.m4a",
+      "year": 2013,
+      "notes": "Sound design for the Sundance award-winning film Sangam, directed by Prashant Bhargava.",
+      "meta": { "generative": false }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "vaurals",
+  "title": "Vaurals",
+  "blurb": "The \"blvp\" series — audio-visual experiments pairing sound with generative and archival imagery.",
+  "accent": "#5A0057",
+  "tracks": [
+    {
+      "id": "vaurals-sphere-noire",
+      "title": "Sphère Noire",
+      "kind": "video",
+      "src": "/video/vaurals/sphere-noire.mp4",
+      "notes": "Visual interpretation of a geometric composition.",
+      "meta": { "generative": true }
+    },
+    {
+      "id": "vaurals-blvp-snes",
+      "title": "blvp / SNES",
+      "kind": "video",
+      "src": "/video/blvp-snes.mp4",
+      "year": 2017,
+      "notes": "Game console audio routed through custom processing chains.",
+      "meta": { "seed": "snes-01", "generative": true }
+    },
+    {
+      "id": "vaurals-space-bossa",
+      "title": "Space Bossa",
+      "kind": "audio",
+      "src": "/audio/spacebossa.mp3",
+      "year": 2016,
+      "notes": "Bossa nova rhythms in deep-field space.",
+      "meta": { "bpm": 112 }
+    },
+    {
+      "id": "vaurals-wave",
+      "title": "Wave",
+      "kind": "video",
+      "src": "/video/wave2.mp4",
+      "year": 2018,
+      "notes": "Wave propagation rendered as both sound and image.",
+      "meta": { "seed": "wave-2", "generative": true }
+    }
+  ]
+}
