@@ -9,36 +9,114 @@
       "title": "Return",
       "kind": "audio",
       "src": "/audio/journeys/return.mp3",
-      "year": 2020,
+      "year": 2007,
       "notes": "Tonal exploration — departure and resolution.",
-      "meta": { "tuning": "A = 432 Hz", "generative": true }
+      "meta": {
+        "tuning": "A = 432 Hz",
+        "generative": true,
+        "visualizer": "kaleidoscope"
+      }
     },
     {
       "id": "journeys-inner-conflict",
       "title": "Inner Conflict",
       "kind": "audio",
       "src": "/audio/journeys/innerconflictmix2.mp3",
-      "year": 2019,
+      "year": 2008,
       "notes": "Rhythmic tension held in suspension.",
-      "meta": { "bpm": 92 }
+      "meta": {
+        "bpm": 92,
+        "visualizer": "audio-ripples",
+        "radialViz": {
+          "trailFadeSeconds": 8,
+          "rotationSpeed": 0.008,
+          "lineWidth": 0.45,
+          "bands": 96
+        }
+      }
     },
     {
       "id": "journeys-hope-and-light",
       "title": "Hope and Light",
       "kind": "audio",
       "src": "/audio/journeys/hope-and-light.mp3",
-      "year": 2014,
+      "year": 2005,
       "notes": "Orchestral piece — placeholder copy; refine credits and notes.",
-      "meta": { "bpm": 72 }
+      "meta": {
+        "generative": false,
+        "visualizer": "sacred-geometry",
+        "visualizerColor": "#551991",
+        "radialViz": {
+          "rotationSpeed": 0.1,
+          "trailFadeSeconds": 5
+        },
+        "particleViz": {
+          "counterRing": true,
+          "maxSparksPerFrame": 12,
+          "sparkThreshold": 0.1,
+          "burstSpeed": 120,
+          "burstCount": 18,
+          "ambientDriftRate": 10
+        }
+      }
     },
     {
-      "id": "film-music-monster-piano",
+      "id": "journeys-monster-piano",
       "title": "Monster Piano",
       "kind": "audio",
       "src": "/audio/journeys/monsterpiano.m4a",
       "year": 2013,
       "notes": "Prepared piano piece for theatrical underscore.",
-      "meta": { "generative": false }
+      "meta": {
+        "generative": false,
+        "visualizerColor": "#FF5111",
+        "visualizer": "bass-vortex",
+        "radialViz": {
+          "rotationSpeed": 0.05,
+          "trailFadeSeconds": 2
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 12,
+          "sparkThreshold": 0.14,
+          "burstSpeed": 120,
+          "burstCount": 18,
+          "ambientDriftRate": 17
+        }
+      }
+    },
+    {
+      "id": "journeys-spider-walk",
+      "title": "Spider Walk",
+      "kind": "audio",
+      "src": "/audio/spiderwalk.mp3",
+      "year": 1998,
+      "notes": "Fingerstyle study with extended harmonic movement.",
+      "meta": {
+        "DAW": "Digital Performer",
+        "visualizer": "neon-grid",
+        "radialViz": {
+          "rotationSpeed": 0.08,
+          "trailFadeSeconds": 1.2,
+          "bands": 144
+        },
+        "punchViz": {
+          "sensitivity": 5,
+          "satBoost": 0.6,
+          "lightBoost": 0.28
+        }
+      }
+    },
+    {
+      "id": "journeys-independence-day",
+      "title": "Independence Day",
+      "kind": "audio",
+      "src": "/audio/journeys/independence-day.m4a",
+      "notes": "A modern hypnotic medley of musical Americana.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "rave-lasers"
+      }
     }
   ]
 }

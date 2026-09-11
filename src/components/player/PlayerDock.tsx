@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import { usePlayer } from "@/contexts/PlayerContext";
 import Visualizer from "./Visualizer";
 import Queue from "./Queue";
-import { formatTime, resolveAccentHex } from "@/lib/utils";
+import { formatTime } from "@/lib/utils";
 
 /* ─── Icon helpers ───────────────────────────────────────────────────────── */
 function PlayIcon() {
@@ -192,15 +192,15 @@ export default function PlayerDock() {
     playbackError,
   } = usePlayer();
 
-  const accent = resolveAccentHex(
-    currentCollection?.accent ?? currentTrack?.accent ?? "var(--accent)"
-  );
+  const accent =
+    currentCollection?.accent ?? currentTrack?.accent ?? "var(--accent)";
   const isPlaying = status === "playing";
   const isLoading = status === "loading";
 
   return (
     <>
       <Queue />
+
       <footer
         className="fixed bottom-0 left-0 right-0 z-50"
         style={{
@@ -219,12 +219,20 @@ export default function PlayerDock() {
         </div>
 
         <div className="h-full flex items-center gap-4 px-4 lg:px-6">
-          {/* Visualizer — always visible; waveform + spectrum */}
+          {/* Compact visualizer — expand from detail panel on collection pages */}
           <div
-            className="w-14 sm:w-24 lg:w-36 shrink-0"
+            className="shrink-0 w-16 h-16 sm:w-20 sm:h-20"
             style={{ borderLeft: "1px solid var(--line)", paddingLeft: "0.75rem" }}
+            aria-hidden={!currentTrack}
           >
-            <Visualizer accentColor={accent} height={44} />
+            <Visualizer
+              accentColor={accent}
+              trackAccent={currentTrack?.accent}
+              height="fill"
+              collectionSlug={currentCollection?.slug}
+              trackMeta={currentTrack?.meta}
+              surface="dock"
+            />
           </div>
 
           {/* Track info */}
@@ -271,7 +279,7 @@ export default function PlayerDock() {
               onClick={togglePlay}
               disabled={!currentTrack || currentTrack.kind === "video"}
               className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105 active:scale-95 disabled:opacity-40"
-              style={{ background: accent, color: "#0a0b0d" }}
+              style={{ background: accent, color: "var(--bg)" }}
               aria-label={isPlaying ? "Pause" : "Play"}
               aria-pressed={isPlaying}
             >

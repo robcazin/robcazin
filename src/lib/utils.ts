@@ -37,12 +37,14 @@ export function mixHex(a: string, b: string, t: number): string {
 
 /** Resolve an accent to a #rrggbb hex string (canvas cannot use CSS vars). */
 export function resolveAccentHex(color: string): string {
+  if (/^#[0-9a-fA-F]{8}$/.test(color)) return color.slice(0, 7);
   if (/^#[0-9a-fA-F]{6}$/.test(color)) return color;
   if (typeof window !== "undefined") {
     const fromVar = getComputedStyle(document.documentElement)
       .getPropertyValue("--accent")
       .trim();
+    if (/^#[0-9a-fA-F]{8}$/.test(fromVar)) return fromVar.slice(0, 7);
     if (/^#[0-9a-fA-F]{6}$/.test(fromVar)) return fromVar;
   }
-  return "#ff5a3c";
+  return "#0A4053";
 }

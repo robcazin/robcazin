@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { getCollections, getCollection } from "@/lib/content";
 import CollectionPage from "@/components/CollectionPage";
 
+// Re-read catalog JSON on each request so content edits show without rebuild.
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{ collection: string }>;
 }

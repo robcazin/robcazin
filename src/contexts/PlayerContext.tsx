@@ -8,6 +8,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { usePathname } from "next/navigation";
 import type { Track, Collection } from "@/lib/types";
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
@@ -75,6 +76,7 @@ function describeMediaError(audio: HTMLAudioElement, src: string): string {
 }
 
 export function PlayerProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
@@ -114,16 +116,24 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
       audio.volume = volume;
     }
 
-    const onTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const onTimeUpdate = () => {
+      setCurrentTime(audio.currentTime);
+      // Keep status in sync — after buffering, `playing` may not re-fire.
+      if (!audio.paused && !audio.ended) {
+        setStatus((s) => (s === "loading" ? s : "playing"));
+      }
+    };
     const onDurationChange = () => setDuration(audio.duration || 0);
     const onPlaying = () => {
       setPlaybackError(null);
       setStatus("playing");
     };
-    const onPause = () => setStatus("paused");
+    const onPause = () => {
+      if (!audio.ended) setStatus("paused");
+    };
     const onWaiting = () => setStatus("loading");
     const onCanPlay = () => {
-      if (audio.paused) setStatus("paused");
+      if (!audio.paused) setStatus("playing");
     };
     const onError = () => {
       setPlaybackError(describeMediaError(audio, audio.src));
@@ -152,11 +162,41 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
       audio.removeEventListener("canplay", onCanPlay);
       audio.removeEventListener("error", onError);
       audio.removeEventListener("ended", onEnded);
-      audio.pause();
-      audio.src = "";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /* ─── Re-sync status after navigation / tab focus (playing may not re-fire) ─ */
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const sync = () => {
+      if (!currentTrack || currentTrack.kind === "video") return;
+      if (!audio.paused && !audio.ended) {
+        setStatus((s) => (s === "loading" ? s : "playing"));
+      } else if (audio.paused && !audio.ended) {
+        setStatus("paused");
+      }
+    };
+
+    document.addEventListener("visibilitychange", sync);
+    window.addEventListener("focus", sync);
+    window.addEventListener("pageshow", sync);
+    return () => {
+      document.removeEventListener("visibilitychange", sync);
+      window.removeEventListener("focus", sync);
+      window.removeEventListener("pageshow", sync);
+    };
+  }, [currentTrack]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !currentTrack || currentTrack.kind === "video") return;
+    if (!audio.paused && !audio.ended) {
+      setStatus((s) => (s === "loading" ? s : "playing"));
+    }
+  }, [pathname, currentTrack]);
 
   /* ─── Web Audio API setup ─────────────────────────────────────────────── */
   // Must run inside a user gesture. createMediaElementSource can only be called
@@ -175,7 +215,7 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
 
     const ctx = new Ctor();
     const analyser = ctx.createAnalyser();
-    analyser.fftSize = 1024;
+    analyser.fftSize = 2048;
     analyser.smoothingTimeConstant = 0.8;
 
     // createMediaElementSource consumes the element's output; route it through
@@ -201,7 +241,8 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
         setCurrentTrack(track);
         setCurrentCollection(collection);
         // Queue the rest of the collection
-        const rest = collection.tracks.filter((t) => t.id !== track.id);
+        const idx = collection.tracks.findIndex((t) => t.id === track.id);
+        const rest = idx >= 0 ? collection.tracks.slice(idx + 1) : [];
         setQueueState(rest);
         setStatus("idle");
         return;
@@ -223,7 +264,8 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
       setCurrentTime(0);
       setDuration(0);
 
-      const rest = collection.tracks.filter((t) => t.id !== track.id);
+      const idx = collection.tracks.findIndex((t) => t.id === track.id);
+      const rest = idx >= 0 ? collection.tracks.slice(idx + 1) : [];
       setQueueState(rest);
 
       audio.play().catch(() => setStatus("paused"));
@@ -278,8 +320,9 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     ensureAudioContext();
     void audioCtxRef.current?.resume();
 
-    if (audio.paused) {
-      audio.play().catch(() => {});
+    // Trust the element, not React status (can drift after route changes / buffering).
+    if (audio.paused || audio.ended) {
+      void audio.play().catch(() => setStatus("paused"));
     } else {
       audio.pause();
     }

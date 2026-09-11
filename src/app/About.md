@@ -20,7 +20,7 @@ In 1990 I came to New York as Director of 3D at Limelite Digital, when "3D" stil
 
 1992
 
-In 1992 I founded my own shop, So! Animation. The cost of entry tells you the era: $40,000 for Softimage, $20,000 for an Iris Indigo, and later, $50,000 for an Accom WSD disk recorder. The Accom weighed sixty pounds — and I carried it around the city by hand, fifty thousand dollars and sixty pounds of machine under one arm, crossing town to deliver finished work to NBC and the Image Group. I worked alongside designers I admired, building my own design language in parallel with the pipeline I was inventing to keep up with the work.
+In 1992 I founded my own shop, So! Animation. The cost of entry tells you the era: $40,000 for Softimage, $20,000 for an Iris Indigo, and later, $50,000 for an Accom WSD disk recorder. The Accom weighed sixty pounds — and I carried it around the city by hand, fifty thousand dollars and sixty pounds of machine over one shoulder, crossing town to deliver finished work to NBC and the Image Group. I worked alongside designers I admired, building my own design language in parallel with the pipeline I was inventing to keep up with the work.
 
 The first room was a 1,200-square-foot loft at 39 East 20th Street, in the Flatiron — exposed brick and an unreasonable amount of excitement. Then a bigger one: a 2,200-square-foot penthouse at 220 East 23rd, tenth floor, with an 800-square-foot terrace over lower Manhattan. Decades earlier it had been a composer's home, and it still had the light and the acoustics to prove it. I built it out properly — isolation booth, machine room — the fullest version yet of that two-cassette-deck idea.
 

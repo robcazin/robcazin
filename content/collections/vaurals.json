@@ -28,7 +28,16 @@
       "src": "/audio/spacebossa.mp3",
       "year": 2016,
       "notes": "Bossa nova rhythms in deep-field space.",
-      "meta": { "bpm": 112 }
+      "meta": {
+        "bpm": 112,
+        "visualizer": "kaleidoscope",
+        "radialViz": {
+          "bands": 128,
+          "rotationSpeed": 0.01,
+          "trailFadeSeconds": 5,
+          "innerRadiusRatio": 0.12
+        }
+      }
     },
     {
       "id": "vaurals-wave",

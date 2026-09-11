@@ -4,8 +4,8 @@ const externalLinks = [
   { label: "So! Animation", href: "http://so-animation.com" },
   { label: "Icon Theory", href: "http://www.icontheory.com" },
   {
-    label: "Yuria Watanabe",
-    href: "https://www.linkedin.com/in/yuria-watanabe",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/robcazin",
   },
 ];
 

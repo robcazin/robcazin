@@ -7,12 +7,24 @@ interface MetaReadoutProps {
 
 const isUrl = (s: string) => /^https?:\/\//.test(s);
 
+/** Visualizer tuning lives in meta but is not shown in the readout. */
+const VIZ_META_KEYS = new Set([
+  "visualizer",
+  "visualizerColor",
+  "radialViz",
+  "particleViz",
+  "punchViz",
+  "spectrumViz",
+  "waveformViz",
+]);
+
 export default function MetaReadout({ track, className = "" }: MetaReadoutProps) {
   const { meta, year, credits } = track;
   if (!meta && !year && !credits) return null;
 
   const formatValue = (v: unknown): string => {
     if (typeof v === "boolean") return v ? "yes" : "no";
+    if (typeof v === "object") return JSON.stringify(v);
     return String(v);
   };
 
@@ -23,9 +35,8 @@ export default function MetaReadout({ track, className = "" }: MetaReadoutProps)
   // `meta` is freeform — render every key/value in authoring order.
   if (meta) {
     for (const [k, v] of Object.entries(meta)) {
-      if (v !== undefined && v !== null) {
-        rows.push([k, formatValue(v)]);
-      }
+      if (VIZ_META_KEYS.has(k) || v === undefined || v === null) continue;
+      rows.push([k, formatValue(v)]);
     }
   }
 

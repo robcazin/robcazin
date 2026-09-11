@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Over GitHub's 100MB hard limit — keep local, host elsewhere later
+/public/video/looping.mp4
+/public/video/rob-cazin-gtr2.mp4

@@ -5,12 +5,45 @@
   "accent": "#5A1AFE",
   "tracks": [
     {
-        "id": "film-music-samuel-is-dreaming",
-        "title": "Samuel Is Dreaming",
-        "kind": "audio",
-        "src": "/audio/science/samuel-is-dreaming.flac",
-        "meta": { "format": "FLAC" }
-      },
+      "id": "film-music-samuel-is-dreaming",
+      "title": "Samuel Is Dreaming",
+      "kind": "audio",
+      "src": "/audio/film-music/samuel-is-dreaming.flac",
+      "meta": {
+        "format": "FLAC",
+        "visualizer": "kaleidoscope",
+        "radialViz": {
+          "trailFadeSeconds": 8,
+          "rotationSpeed": 0.008,
+          "lineWidth": 0.45,
+          "bands": 96
+        }
+      }
+    },
+    {
+      "id": "film-music-salience",
+      "title": "Salience",
+      "kind": "audio",
+      "src": "/audio/science/salience.flac",
+      "meta": {
+        "format": "FLAC",
+        "generative": true,
+        "visualizer": "bass-vortex",
+        "visualizerColor": "#7EC8FF",
+        "radialViz": {
+          "rotationSpeed": 0.02,
+          "trailFadeSeconds": 6,
+          "innerRadiusRatio": 0.28
+        },
+        "particleViz": {
+          "burstColor": "#FFFFFF",
+          "sparkThreshold": 0.08,
+          "maxSparksPerFrame": 16,
+          "ambientDriftRate": 8,
+          "counterRing": true
+        }
+      }
+    },
     {
       "id": "film-music-if",
       "title": "If",
@@ -25,7 +58,20 @@
       "src": "/audio/orkestra.mp3",
       "year": 2018,
       "notes": "Dense orchestral generative piece — placeholder placement; move or retitle as needed.",
-      "meta": { "generative": true, "tuning": "A = 440 Hz" }
+      "meta": {
+        "generative": false,
+        "tuning": "A = 440 Hz",
+        "visualizer": "cosmic-storm",
+        "visualizerColor": "#FF6A1A",
+        "particleViz": {
+          "burstColor": "#FFE08A",
+          "burstComposite": "color-dodge",
+          "burstSpeed": 180,
+          "outwardAccel": 60,
+          "life": 1.8,
+          "counterRing": true
+        }
+      }
     }
   ]
 }

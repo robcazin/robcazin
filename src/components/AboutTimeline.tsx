@@ -127,7 +127,7 @@ const beats: Beat[] = [
         the era: $40,000 for Softimage, $20,000 for an Iris Indigo, and later 
         $50,000 for an Accom WSD disk recorder. The Accom weighed sixty pounds - 
         and I carried it around the city by hand, fifty thousand dollars and sixty 
-        pounds of machine under one arm, crossing town to deliver finished work to
+        pounds of machine over one shoulder, crossing town to deliver finished work to
         NBC and the Image Group. I worked with designers I admired, building my own design 
         language in parallel with the pipeline I was inventing to keep up with the work.
       </p>
@@ -171,7 +171,7 @@ const beats: Beat[] = [
           was still at it, decades on.
         </p>
         <p className="leading-relaxed mt-4" style={{ color: "var(--text-dim)" }}>
-          Those Florida years are also when faith found me, and when family became
+          Those Florida years are also when faith took root in me, and when family became
           the center of gravity under everything else. Neither has much to do with
           the work. Both have everything to do with the life.
         </p>

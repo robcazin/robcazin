@@ -6,6 +6,9 @@ import type { Collection } from "@/lib/types";
 import TrackRow from "./TrackRow";
 import MetaReadout from "./MetaReadout";
 import Visualizer from "./player/Visualizer";
+import ExpandedVisualizerPanel, {
+  ExpandVisualizerIcon,
+} from "./player/ExpandedVisualizerPanel";
 import { usePlayer } from "@/contexts/PlayerContext";
 import { resolveAccentHex } from "@/lib/utils";
 import Footer from "./Footer";
@@ -16,23 +19,33 @@ interface CollectionPageProps {
 }
 
 export default function CollectionPage({ collection }: CollectionPageProps) {
-  const { currentTrack, status } = usePlayer();
-  // Hover previews until a track is clicked; click pins the detail panel.
+  const { currentTrack } = usePlayer();
+  // Hover previews until a track is clicked; click pins when nothing is playing.
   const [previewId, setPreviewId] = useState<string | null>(null);
   const [pinnedId, setPinnedId] = useState<string | null>(null);
+  const [vizExpanded, setVizExpanded] = useState(false);
   const accent = collection.accent ?? "var(--accent)";
+
+  const trackIds = collection.tracks.map((t) => t.id);
 
   useEffect(() => {
     setPreviewId(null);
     setPinnedId(null);
+    setVizExpanded(false);
   }, [collection.slug]);
 
-  const detailId = pinnedId ?? previewId;
+  // While this collection is playing, detail always follows the current track.
+  const playingInCollection =
+    currentTrack && trackIds.includes(currentTrack.id)
+      ? currentTrack.id
+      : null;
+
+  const detailId = playingInCollection ?? pinnedId ?? previewId;
   const detailTrack =
     collection.tracks.find((t) => t.id === detailId) ?? null;
 
   const handlePreview = (id: string) => {
-    if (!pinnedId) setPreviewId(id);
+    if (!playingInCollection && !pinnedId) setPreviewId(id);
   };
 
   const handlePin = (id: string) => {
@@ -41,10 +54,13 @@ export default function CollectionPage({ collection }: CollectionPageProps) {
   };
 
   const accentHex = resolveAccentHex(collection.accent ?? "var(--accent)");
-  const showLiveViz =
-    detailTrack?.kind === "audio" &&
-    currentTrack?.id === detailTrack.id &&
-    status === "playing";
+  const showDetailViz = detailTrack?.kind === "audio";
+
+  const hasDetailMedia =
+    detailTrack &&
+    (showDetailViz ||
+      (detailTrack.kind === "video" && !!detailTrack.src) ||
+      (!!detailTrack.poster && detailTrack.kind === "audio"));
 
   return (
     <>
@@ -91,7 +107,7 @@ export default function CollectionPage({ collection }: CollectionPageProps) {
       {/* Tracks + detail panel */}
       <section className="px-6 py-12">
         <div
-          className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8"
+          className="max-w-5xl mx-auto xl:max-w-6xl grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] gap-8 lg:gap-6 xl:gap-8"
           onMouseLeave={() => {
             if (!pinnedId) setPreviewId(null);
           }}
@@ -126,73 +142,105 @@ export default function CollectionPage({ collection }: CollectionPageProps) {
             </p>
           </div>
 
-          {/* Detail panel */}
-          <aside aria-label="Track details">
+          {/* Detail panel — grows right on xl; scrolls internally when tall */}
+          <aside aria-label="Track details" className="min-w-0">
             {detailTrack ? (
               <div
-                className="sticky top-24 p-5"
+                className="sticky top-24 p-5 max-h-[calc(100vh-var(--player-h)-7rem)] overflow-y-auto"
                 style={{
                   background: "var(--surface)",
                   border: "1px solid var(--line)",
                 }}
               >
-                {/* Live audio visual when this track is playing */}
-                {showLiveViz && (
-                  <div
-                    className="mb-5"
-                    style={{ borderBottom: "1px solid var(--line)", paddingBottom: "1rem" }}
-                  >
-                    <Visualizer accentColor={accentHex} height={72} />
-                  </div>
-                )}
-
-                {/* Video preview */}
-                {detailTrack.kind === "video" && detailTrack.src && (
-                  <div className="mb-5 aspect-video bg-black overflow-hidden">
-                    <video
-                      src={detailTrack.src}
-                      controls
-                      className="w-full h-full object-cover"
-                      aria-label={`Video: ${detailTrack.title}`}
-                    />
-                  </div>
-                )}
-
-                {/* Poster image */}
-                {detailTrack.poster && detailTrack.kind === "audio" && (
-                  <div className="mb-5 aspect-square overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={detailTrack.poster}
-                      alt={detailTrack.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-
-                <p
-                  className="label-caps mb-1"
-                  style={{ color: "var(--text-dim)" }}
+                <div
+                  className={`grid gap-4 xl:gap-6 ${
+                    hasDetailMedia
+                      ? "grid-cols-1 sm:grid-cols-[11rem_minmax(0,1fr)]"
+                      : "grid-cols-1"
+                  }`}
                 >
-                  {collection.title}
-                </p>
-                <h2
-                  className="text-lg font-semibold mb-3"
-                  style={{ color: "var(--text)" }}
-                >
-                  {detailTrack.title}
-                </h2>
+                  {/* Left: visual / video / poster */}
+                  {hasDetailMedia && (
+                  <div className="min-w-0">
+                    {showDetailViz && (
+                      <div className="relative mb-4 sm:mb-0">
+                        <div className="mx-auto w-full max-w-[11rem] min-h-[11rem] aspect-square">
+                          {!vizExpanded && (
+                            <Visualizer
+                              accentColor={accentHex}
+                              height="fill"
+                              collectionSlug={collection.slug}
+                              trackMeta={detailTrack.meta}
+                              surface="panel"
+                            />
+                          )}
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setVizExpanded(true)}
+                          className="absolute bottom-1.5 right-1.5 p-1.5 rounded-sm transition-colors hover:bg-[var(--surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1"
+                          style={{
+                            color: "var(--text-dim)",
+                            outlineColor: accent,
+                          }}
+                          aria-label="Expand visualizer"
+                        >
+                          <ExpandVisualizerIcon />
+                        </button>
+                      </div>
+                    )}
 
-                {detailTrack.notes && (
-                  <p
-                    className="text-sm leading-relaxed mb-4"
-                    style={{ color: "var(--text-dim)" }}
-                  >
-                    {detailTrack.notes}
-                  </p>
-                )}
+                    {detailTrack.kind === "video" && detailTrack.src && (
+                      <div className="aspect-video bg-black overflow-hidden sm:aspect-square sm:max-h-[9.5rem]">
+                        <video
+                          src={detailTrack.src}
+                          controls
+                          className="w-full h-full object-cover"
+                          aria-label={`Video: ${detailTrack.title}`}
+                        />
+                      </div>
+                    )}
 
-                <MetaReadout track={detailTrack} />
+                    {detailTrack.poster && detailTrack.kind === "audio" && (
+                      <div className="aspect-square max-w-[9.5rem] overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={detailTrack.poster}
+                          alt={detailTrack.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  )}
+
+                  {/* Right: title, notes, meta */}
+                  <div className="min-w-0">
+                    <p
+                      className="label-caps mb-1"
+                      style={{ color: "var(--text-dim)" }}
+                    >
+                      {collection.title}
+                    </p>
+                    <h2
+                      className="text-lg font-semibold mb-3"
+                      style={{ color: "var(--text)" }}
+                    >
+                      {detailTrack.title}
+                    </h2>
+
+                    {detailTrack.notes && (
+                      <p
+                        className="text-sm leading-relaxed mb-4"
+                        style={{ color: "var(--text-dim)" }}
+                      >
+                        {detailTrack.notes}
+                      </p>
+                    )}
+
+                    <MetaReadout track={detailTrack} />
+                  </div>
+                </div>
               </div>
             ) : (
               <div
@@ -215,6 +263,16 @@ export default function CollectionPage({ collection }: CollectionPageProps) {
       </section>
 
       <Footer />
+
+      {detailTrack?.kind === "audio" && (
+        <ExpandedVisualizerPanel
+          open={vizExpanded}
+          onClose={() => setVizExpanded(false)}
+          accentColor={accentHex}
+          collectionSlug={collection.slug}
+          trackMeta={detailTrack.meta}
+        />
+      )}
     </>
   );
 }

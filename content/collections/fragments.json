@@ -10,7 +10,15 @@
       "kind": "audio",
       "src": "/audio/spacebossa.mp3",
       "year": 2016,
-      "notes": "Early sketch \u2014 placeholder until Rob supplies the real fragment audio."
+      "notes": "Early sketch \u2014 placeholder until Rob supplies the real fragment audio.",
+      "meta": {
+        "visualizer": "audio-waves",
+        "waveformViz": {
+          "trailFadeSeconds": 6,
+          "lineWidth": 1.1,
+          "waveHeightRatio": 0.62
+        }
+      }
     }
   ]
 }

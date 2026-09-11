@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { usePlayer } from "@/contexts/PlayerContext";
 import type { Track, Collection } from "@/lib/types";
 import { formatTime } from "@/lib/utils";
@@ -44,6 +45,7 @@ export default function TrackRow({
   const isPlaying = isCurrent && status === "playing";
   const accent = collection.accent ?? "var(--accent)";
   const highlighted = isCurrent || detailActive;
+  const [hovered, setHovered] = useState(false);
 
   return (
     <li>
@@ -52,12 +54,19 @@ export default function TrackRow({
           onPin?.(track.id);
           playTrack(track, collection);
         }}
-        onMouseEnter={() => onPreview?.(track.id)}
+        onMouseEnter={() => {
+          setHovered(true);
+          onPreview?.(track.id);
+        }}
+        onMouseLeave={() => setHovered(false)}
         onFocus={() => onPreview?.(track.id)}
-        className="w-full text-left flex items-center gap-4 px-4 py-3.5 group transition-colors hover:bg-[var(--surface-2)]"
+        className="w-full text-left flex items-center gap-4 px-4 py-3.5 group transition-colors"
         style={{
           borderBottom: "1px solid var(--line)",
-          background: highlighted ? "var(--surface-2)" : undefined,
+          background:
+            highlighted || hovered
+              ? `color-mix(in srgb, ${accent} 28%, var(--bg))`
+              : undefined,
         }}
         aria-label={`Play ${track.title}`}
         aria-pressed={isCurrent}
@@ -106,7 +115,7 @@ export default function TrackRow({
           )}
         </div>
 
-        {/* Title + notes */}
+        {/* Title */}
         <div className="flex-1 min-w-0">
           <p
             className="text-sm font-medium truncate"
@@ -114,14 +123,6 @@ export default function TrackRow({
           >
             {track.title}
           </p>
-          {track.notes && (
-            <p
-              className="text-xs mt-0.5 truncate"
-              style={{ color: "var(--text-dim)" }}
-            >
-              {track.notes}
-            </p>
-          )}
         </div>
 
         {/* Kind badge */}

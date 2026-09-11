@@ -5,6 +5,52 @@
   "accent": "#0B64E0",
   "tracks": [
     {
+      "id": "science-unfolding",
+      "title": "Unfolding (E·τ ≈ ℏ)",
+      "kind": "audio",
+      "src": "/audio/science/Unfolding.m4a",
+      "notes": "Built from one interval and nothing else: the 2:3 ratio inside 432 Hz, operating at four nested timescales. A non-metric field gathers until it commits — discretely, in a single instant — to a sub-register fifth and a clock. Then structure builds: two counter-rotating spiral voices, one ascending and one descending, that gather gradually and reveal finer fractal detail the longer they run. The collapse is the OR; the orchestration that follows is the Orch.",
+      "meta": {
+        "format": "m4a",
+        "tuning": "A = 432 Hz",
+        "generative": true,
+        "structure": "four nested 2:3 timescales",
+        "form": "collapse → accrual → fractal bloom",
+        "visualizer": "graph",
+        "particleViz": {
+          "counterRing": true,
+          "maxSparksPerFrame": 12,
+          "sparkThreshold": 0.14,
+          "burstCount": 18,
+          "ambientDriftRate": 5
+        }
+      }
+    },
+    {
+      "id": "science-uncertainty-remaster",
+      "title": "The Uncertainty Principle",
+      "kind": "audio",
+      "src": "/audio/science/uncertainty-remaster.m4a",
+      "notes": "An exploration of coherence.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "abyssal-fractals",
+        "visualizerColor": "#56053D",
+        "radialViz": {
+          "rotationSpeed": 0.05,
+          "trailFadeSeconds": 2
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 12,
+          "sparkThreshold": 0.14,
+          "burstSpeed": 120,
+          "burstCount": 18,
+          "ambientDriftRate": 17
+        }
+      }
+    },
+    {
       "id": "science-awake",
       "title": "Awake",
       "kind": "audio",
@@ -17,14 +63,24 @@
       "title": "COVID-19",
       "kind": "audio",
       "src": "/audio/science/covid19.m4a",
-      "meta": { "format": "m4a", "generative": true }
-    },
-    {
-      "id": "science-salience",
-      "title": "Salience",
-      "kind": "audio",
-      "src": "/audio/science/salience.flac",
-      "meta": { "format": "FLAC", "generative": true }
+      "meta": {
+        "format": "m4a",
+        "generative": true,
+        "visualizer": "cosmic-storm",
+        "visualizerColor": "#7EC8FF",
+        "radialViz": {
+          "rotationSpeed": 0.02,
+          "trailFadeSeconds": 6,
+          "innerRadiusRatio": 0.28
+        },
+        "particleViz": {
+          "burstColor": "#FFFFFF",
+          "sparkThreshold": 0.08,
+          "maxSparksPerFrame": 16,
+          "ambientDriftRate": 8,
+          "counterRing": true
+        }
+      }
     }
   ]
 }
