@@ -1,0 +1,17 @@
+{
+  "slug": "specimens",
+  "title": "Specimens",
+  "blurb": "Odd short pieces — quirky, angular curiosities kept under glass.",
+  "accent": "#9a7b4f",
+  "tracks": [
+    {
+      "id": "specimens-huit-cochons",
+      "title": "Huit Cochons",
+      "kind": "audio",
+      "src": "/audio/specimens/huit-cochons.mp3",
+      "year": 2026,
+      "notes": "Quirky, short, angular — lighthearted in a dark setting.",
+      "meta": { "format": "MP3" }
+    }
+  ]
+}

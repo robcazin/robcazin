@@ -333,6 +333,7 @@ export const COLLECTION_VISUALIZER: Partial<Record<string, VisualizerMode>> = {
   vaurals: "audio-matrix",
   "guitar-improv": "audio-waves",
   fragments: "audio-waves",
+  specimens: "audio-waves",
   "film-theatre": "rainy-days",
 };
 
