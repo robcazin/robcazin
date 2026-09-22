@@ -57,7 +57,7 @@
       "id": "film-music-orkestra",
       "title": "Orkestra",
       "kind": "audio",
-      "src": "/audio/orkestra.mp3",
+      "src": "/audio/film-music/orkestra.m4a",
       "year": 2018,
       "notes": "Dense orchestral generative piece — placeholder placement; move or retitle as needed.",
       "meta": {
@@ -72,7 +72,8 @@
           "outwardAccel": 60,
           "life": 1.8,
           "counterRing": true
-        }
+        },
+        "format": "m4a"
       }
     },
     {
