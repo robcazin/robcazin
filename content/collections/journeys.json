@@ -228,6 +228,95 @@
           "ambientDriftRate": 3
         }
       }
+    },
+    {
+      "id": "journeys-tales-from-a-robot",
+      "title": "Tales From A Robot",
+      "kind": "audio",
+      "src": "/audio/journeys/tales-from-a-robot.m4a",
+      "poster": "/img/tracks/tales.png",
+      "notes": "Artwork poster replaces live visualizer.",
+      "meta": {
+        "format": "m4a"
+      }
+    },
+    {
+      "id": "journeys-3-days-in-the-desert",
+      "title": "3 Days in the Desert",
+      "kind": "audio",
+      "src": "/audio/journeys/3-days-in-the-desert.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "abyssal-fractals",
+        "visualizerColor": "#8B7355",
+        "radialViz": {
+          "trailFadeSeconds": 11,
+          "rotationSpeed": 0.005,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 10,
+          "sparkThreshold": 0.12,
+          "burstSpeed": 55,
+          "burstCount": 10,
+          "ambientDriftRate": 4
+        }
+      }
+    },
+    {
+      "id": "journeys-the-nearest",
+      "title": "The Nearest",
+      "kind": "audio",
+      "src": "/audio/journeys/the-nearest.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "abyssal-fractals",
+        "visualizerColor": "#5A6A7A",
+        "radialViz": {
+          "trailFadeSeconds": 11,
+          "rotationSpeed": 0.004,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 14,
+          "sparkThreshold": 0.1,
+          "burstSpeed": 55,
+          "burstCount": 10,
+          "ambientDriftRate": 5
+        }
+      }
+    },
+    {
+      "id": "journeys-adrift",
+      "title": "Adrift",
+      "kind": "audio",
+      "src": "/audio/journeys/adrift.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "gyroid-pulse",
+        "visualizerColor": "#4A6B7C",
+        "radialViz": {
+          "trailFadeSeconds": 11,
+          "rotationSpeed": 0.005,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 10,
+          "sparkThreshold": 0.12,
+          "burstSpeed": 45,
+          "burstCount": 10,
+          "ambientDriftRate": 6
+        }
+      }
     }
   ]
 }

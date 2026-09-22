@@ -54,7 +54,8 @@ export default function CollectionPage({ collection }: CollectionPageProps) {
   };
 
   const accentHex = resolveAccentHex(collection.accent ?? "var(--accent)");
-  const showDetailViz = detailTrack?.kind === "audio";
+  const showDetailViz =
+    detailTrack?.kind === "audio" && !detailTrack.poster;
 
   const hasDetailMedia =
     detailTrack &&
