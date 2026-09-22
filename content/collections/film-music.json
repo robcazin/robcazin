@@ -49,7 +49,9 @@
       "title": "If",
       "kind": "audio",
       "src": "/audio/film-music/if.flac",
-      "meta": { "format": "FLAC" }
+      "meta": {
+        "format": "FLAC"
+      }
     },
     {
       "id": "film-music-orkestra",
@@ -70,6 +72,32 @@
           "outwardAccel": 60,
           "life": 1.8,
           "counterRing": true
+        }
+      }
+    },
+    {
+      "id": "film-music-heal",
+      "title": "Heal",
+      "kind": "audio",
+      "src": "/audio/film-music/heal.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "audio-ripples",
+        "visualizerColor": "#6B9B8A",
+        "radialViz": {
+          "trailFadeSeconds": 10,
+          "rotationSpeed": 0.006,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 4,
+          "sparkThreshold": 0.22,
+          "burstSpeed": 40,
+          "burstCount": 6,
+          "ambientDriftRate": 2
         }
       }
     }
