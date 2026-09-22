@@ -139,6 +139,17 @@
         "format": "m4a",
         "visualizer": "sacred-geometry"
       }
+    },
+    {
+      "id": "journeys-absynth-play",
+      "title": "Absynth Play",
+      "kind": "audio",
+      "src": "/audio/journeys/absynth-play.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "audio-ripples"
+      }
     }
   ]
 }
