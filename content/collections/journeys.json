@@ -117,6 +117,17 @@
         "format": "m4a",
         "visualizer": "rave-lasers"
       }
+    },
+    {
+      "id": "journeys-sustenance",
+      "title": "Sustenance",
+      "kind": "audio",
+      "src": "/audio/journeys/sustenance.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "sacred-geometry"
+      }
     }
   ]
 }
