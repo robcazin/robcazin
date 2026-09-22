@@ -128,6 +128,17 @@
         "format": "m4a",
         "visualizer": "sacred-geometry"
       }
+    },
+    {
+      "id": "journeys-cerebration-guitar",
+      "title": "Cerebration Guitar",
+      "kind": "audio",
+      "src": "/audio/journeys/cerebration-guitar.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "sacred-geometry"
+      }
     }
   ]
 }
