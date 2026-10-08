@@ -983,6 +983,14 @@ const ShaderVisualizer = dynamic(() => import("./ShaderVisualizer"), {
   loading: () => <VisualizerFallback height="fill" />,
 });
 
+const ArchiveSketchPreview =
+  process.env.NODE_ENV === "development"
+    ? dynamic(() => import("./ArchiveSketchPreview"), {
+        ssr: false,
+        loading: () => <VisualizerFallback height="fill" />,
+      })
+    : null;
+
 const GraphVisualizer = dynamic(() => import("./GraphVisualizer"), {
   ssr: false,
   loading: () => <VisualizerFallback height="fill" />,
@@ -1013,6 +1021,21 @@ function PanelVisualizer({
 }: VisualizerProps) {
   const searchParams = useSearchParams();
   const vizOverride = searchParams.get("viz");
+
+  if (
+    process.env.NODE_ENV === "development" &&
+    ArchiveSketchPreview &&
+    vizOverride?.startsWith("iwr:")
+  ) {
+    return (
+      <ArchiveSketchPreview
+        sketchId={vizOverride}
+        className={className}
+        height={height}
+      />
+    );
+  }
+
   const mode = resolvePanelMode(collectionSlug, trackMeta, vizOverride);
   const effectiveAccent = resolveVisualizerAccent(
     accentColor ?? "var(--accent)",

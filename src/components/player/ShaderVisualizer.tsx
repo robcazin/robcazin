@@ -263,23 +263,5 @@ function makeMaterial(id: ShaderSceneId): THREE.ShaderMaterial {
     },
   });
   mat.userData.sceneId = id;
-  
-  // Log shader compilation errors
-  mat.onBeforeCompile = (shader) => {
-    if (process.env.NODE_ENV === "development") {
-      console.log(`[ShaderVisualizer] Compiling shader: ${id}`);
-    }
-  };
-  
-  // Check for compilation errors after first render attempt
-  if (process.env.NODE_ENV === "development") {
-    setTimeout(() => {
-      const gl = mat.uniforms.time?.value !== undefined ? (mat as unknown as { program?: { getUniforms?: () => unknown } }).program : null;
-      if (!gl) {
-        console.error(`[ShaderVisualizer] Shader ${id} may have failed to compile (no program created)`);
-      }
-    }, 100);
-  }
-  
   return mat;
 }

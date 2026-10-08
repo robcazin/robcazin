@@ -41,7 +41,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-**Note:** The visualizers have been adapted from Canvas 2D to WebGL/GLSL shaders and tuned with muted color palettes and calmer motion to match the aesthetic of robcazin.com.
+**Note:** The five visualizers above were adapted from Canvas 2D to WebGL/GLSL shaders and tuned with muted color palettes and calmer motion to match the aesthetic of robcazin.com.
+
+The full archive is also vendored, unmodified, for a development-only preview browser:
+
+- `vendor/iwrzwr-visual-archive/` — original study HTML and the small runtime scripts those pages load (`motion-runtime.js`, `isolate.js`, and the three square-composition scripts)
+- `vendor/iwrzwr-visual-archive/LICENSE` — MIT license text
+- `vendor/iwrzwr-visual-archive/catalog.json` — index of each sketch, its category, and the study file
+
+These files are not imported by production pages. A dev-only route serves them when `next dev` is running. The preview leaves each sketch on its own simulated input unless the sketch already reads the archive's `iwrSignal` hook, in which case the player forwards the current track's analyser bands into that hook.
 
 ---
 

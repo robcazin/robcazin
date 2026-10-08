@@ -1,73 +1,179 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, useEffect, useState, useCallback } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { VISUALIZER_LIBRARY } from "@/lib/visualizerPresets";
 
-/**
- * Dev-only visualizer switcher
- * 
- * Active in development mode, lets you cycle through visualizers
- * with keyboard shortcuts or dropdown selection.
- * 
- * Usage:
- * - Press 'V' to cycle forward through visualizers
- * - Press Shift+'V' to cycle backward
- * - Click the dropdown to select directly
- * - Press 'X' to toggle the panel
- */
+const FAVORITES_KEY = "robcazin-viz-favorites";
+
+const PORTED_IDS = [
+  "spectrum-ribbon",
+  "phase-braid",
+  "contour-memory",
+  "packet-stitch",
+  "teletext-pulse",
+] as const;
+
+interface ArchiveSketch {
+  id: string;
+  name: string;
+  category: string;
+  file: string;
+  item: number;
+}
+
+interface ArchiveCatalog {
+  sketches: ArchiveSketch[];
+}
+
+interface MenuEntry {
+  id: string;
+  name: string;
+  category: string;
+}
+
+function readFavorites(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(FAVORITES_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.filter((id) => typeof id === "string") : [];
+  } catch {
+    return [];
+  }
+}
 
 function DevVisualizerSwitcherInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
+  const [sketches, setSketches] = useState<ArchiveSketch[]>([]);
+  const [catalogError, setCatalogError] = useState<string | null>(null);
+  const [favorites, setFavorites] = useState<string[]>(readFavorites);
+  const [copied, setCopied] = useState(false);
   const currentViz = searchParams.get("viz");
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/dev/iwrzwr-archive/catalog.json")
+      .then((response) => {
+        if (!response.ok) throw new Error(`catalog ${response.status}`);
+        return response.json() as Promise<ArchiveCatalog>;
+      })
+      .then((catalog) => {
+        if (!cancelled) setSketches(catalog.sketches ?? []);
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) {
+          setCatalogError(error instanceof Error ? error.message : "catalog failed");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const menu = useMemo(() => {
+    const ported: MenuEntry[] = PORTED_IDS.map((id) => {
+      const found = VISUALIZER_LIBRARY.find((entry) => entry.id === id);
+      return { id, name: found?.label ?? id, category: "Ported" };
+    });
+    const site: MenuEntry[] = VISUALIZER_LIBRARY.filter(
+      (entry) => !PORTED_IDS.includes(entry.id as (typeof PORTED_IDS)[number])
+    ).map((entry) => ({
+      id: entry.id,
+      name: entry.label,
+      category: "Site library",
+    }));
+    const archive: MenuEntry[] = sketches.map((sketch) => ({
+      id: sketch.id,
+      name: sketch.name,
+      category: sketch.category,
+    }));
+    return [...ported, ...site, ...archive];
+  }, [sketches]);
+
+  const groups = useMemo(() => {
+    const order: string[] = [];
+    const byCategory = new Map<string, MenuEntry[]>();
+    for (const entry of menu) {
+      if (!byCategory.has(entry.category)) {
+        byCategory.set(entry.category, []);
+        order.push(entry.category);
+      }
+      byCategory.get(entry.category)!.push(entry);
+    }
+    return order.map((category) => ({
+      category,
+      entries: byCategory.get(category)!,
+    }));
+  }, [menu]);
+
+  const current = menu.find((entry) => entry.id === currentViz) ?? null;
 
   const updateViz = useCallback((vizId: string | null) => {
     const url = new URL(window.location.href);
-    if (vizId) {
-      url.searchParams.set("viz", vizId);
-    } else {
-      url.searchParams.delete("viz");
-    }
+    if (vizId) url.searchParams.set("viz", vizId);
+    else url.searchParams.delete("viz");
     router.replace(url.pathname + url.search);
   }, [router]);
 
   useEffect(() => {
-    // Keyboard shortcuts
-    const handleKey = (e: KeyboardEvent) => {
-      // Ignore if user is typing in an input
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+    const handleKey = (event: KeyboardEvent) => {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) {
         return;
       }
-
-      if (e.key === "x" || e.key === "X") {
-        setIsVisible((v) => !v);
-        e.preventDefault();
+      if (event.key === "x" || event.key === "X") {
+        setIsVisible((visible) => !visible);
+        event.preventDefault();
         return;
       }
-
-      if (e.key === "v" || e.key === "V") {
-        const currentIndex = VISUALIZER_LIBRARY.findIndex((v) => v.id === currentViz);
-        let nextIndex;
-        
-        if (e.shiftKey) {
-          // Shift+V: cycle backward
-          nextIndex = currentIndex <= 0 ? VISUALIZER_LIBRARY.length - 1 : currentIndex - 1;
-        } else {
-          // V: cycle forward
-          nextIndex = (currentIndex + 1) % VISUALIZER_LIBRARY.length;
-        }
-
-        const nextViz = VISUALIZER_LIBRARY[nextIndex].id;
-        updateViz(nextViz);
-        e.preventDefault();
-      }
+      if (event.key !== "v" && event.key !== "V") return;
+      if (menu.length === 0) return;
+      const currentIndex = menu.findIndex((entry) => entry.id === currentViz);
+      const nextIndex = event.shiftKey
+        ? (currentIndex <= 0 ? menu.length - 1 : currentIndex - 1)
+        : (currentIndex + 1) % menu.length;
+      updateViz(menu[nextIndex].id);
+      event.preventDefault();
     };
-
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [currentViz, updateViz]);
+  }, [currentViz, menu, updateViz]);
+
+  const toggleFavorite = () => {
+    if (!currentViz) return;
+    setFavorites((prev) => {
+      const next = prev.includes(currentViz)
+        ? prev.filter((id) => id !== currentViz)
+        : [...prev, currentViz];
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
+      return next;
+    });
+  };
+
+  const copyFavorites = async () => {
+    const lines = favorites.map((id) => {
+      const entry = menu.find((item) => item.id === id);
+      return entry ? `${entry.name} — ${entry.category}` : id;
+    });
+    const text = lines.join("\n");
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const area = document.createElement("textarea");
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      area.remove();
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1200);
+  };
 
   if (!isVisible) {
     return (
@@ -81,68 +187,85 @@ function DevVisualizerSwitcherInner() {
     );
   }
 
-  const currentLabel = currentViz 
-    ? VISUALIZER_LIBRARY.find((v) => v.id === currentViz)?.label || "Unknown"
-    : "Default";
+  const starred = currentViz ? favorites.includes(currentViz) : false;
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 rounded-lg bg-black/90 p-4 text-white shadow-lg backdrop-blur-sm border border-white/10">
-      <div className="flex items-start justify-between gap-4 mb-3">
+    <div className="fixed bottom-4 right-4 z-50 w-[22rem] max-w-[calc(100vw-2rem)] rounded-lg border border-white/10 bg-black/90 p-4 text-white shadow-lg backdrop-blur-sm">
+      <div className="mb-3 flex items-start justify-between gap-4">
         <div className="text-xs font-mono text-white/50">DEV VISUALIZER</div>
         <button
           onClick={() => setIsVisible(false)}
-          className="text-white/50 hover:text-white text-xs"
+          className="text-xs text-white/50 hover:text-white"
           title="Hide (X)"
         >
           ✕
         </button>
       </div>
 
-      <div className="space-y-3">
-        <div>
-          <label htmlFor="viz-select" className="block text-xs text-white/70 mb-1.5">
-            Current: {currentLabel}
-          </label>
-          <select
-            id="viz-select"
-            value={currentViz || ""}
-            onChange={(e) => updateViz(e.target.value || null)}
-            className="w-full rounded bg-white/10 border border-white/20 px-3 py-1.5 text-sm text-white focus:border-white/40 focus:outline-none"
-          >
-            <option value="">Track Default</option>
-            <optgroup label="All Visualizers">
-              {VISUALIZER_LIBRARY.map((viz) => (
-                <option key={viz.id} value={viz.id}>
-                  {viz.label}
-                  {viz.collection ? ` (${viz.collection})` : ""}
-                </option>
-              ))}
-            </optgroup>
-          </select>
-        </div>
+      <div className="mb-2 text-xs text-white/70">
+        <div className="text-white/40">{current?.category ?? "Track default"}</div>
+        <div className="text-sm text-white">{current?.name ?? "Track default"}</div>
+      </div>
 
-        <div className="text-xs text-white/50 space-y-1 border-t border-white/10 pt-2">
-          <div><kbd className="font-mono bg-white/10 px-1.5 py-0.5 rounded">V</kbd> Cycle forward</div>
-          <div><kbd className="font-mono bg-white/10 px-1.5 py-0.5 rounded">Shift+V</kbd> Cycle back</div>
-          <div><kbd className="font-mono bg-white/10 px-1.5 py-0.5 rounded">X</kbd> Toggle panel</div>
-        </div>
+      <label htmlFor="viz-select" className="sr-only">
+        Visualizer
+      </label>
+      <select
+        id="viz-select"
+        size={12}
+        value={currentViz || ""}
+        onChange={(event) => updateViz(event.target.value || null)}
+        className="w-full rounded border border-white/20 bg-white/10 px-2 py-1 text-sm text-white focus:border-white/40 focus:outline-none"
+      >
+        <option value="">Track default</option>
+        {groups.map((group) => (
+          <optgroup key={group.category} label={group.category}>
+            {group.entries.map((entry) => (
+              <option key={entry.id} value={entry.id}>
+                {favorites.includes(entry.id) ? "★ " : ""}
+                {entry.name}
+              </option>
+            ))}
+          </optgroup>
+        ))}
+      </select>
 
-        <div className="text-xs text-white/40 pt-2 border-t border-white/10">
-          {VISUALIZER_LIBRARY.length} visualizers available
-        </div>
+      <div className="mt-3 flex gap-2">
+        <button
+          type="button"
+          onClick={toggleFavorite}
+          disabled={!currentViz}
+          className="rounded border border-white/20 px-2 py-1 text-xs text-white/80 hover:text-white disabled:opacity-40"
+        >
+          {starred ? "★ Starred" : "☆ Star"}
+        </button>
+        <button
+          type="button"
+          onClick={() => void copyFavorites()}
+          disabled={favorites.length === 0}
+          className="rounded border border-white/20 px-2 py-1 text-xs text-white/80 hover:text-white disabled:opacity-40"
+        >
+          {copied ? "Copied" : `Copy favorites (${favorites.length})`}
+        </button>
+      </div>
+
+      <div className="mt-3 space-y-1 border-t border-white/10 pt-2 text-xs text-white/50">
+        <div><kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono">V</kbd> next sketch</div>
+        <div><kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono">Shift+V</kbd> previous</div>
+        <div><kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono">X</kbd> hide panel</div>
+        <div>Open the track visualizer to see the preview.</div>
+        {catalogError ? (
+          <div className="text-red-300">Archive catalog failed to load ({catalogError}).</div>
+        ) : (
+          <div>{sketches.length} archive sketches · {menu.length} in the list</div>
+        )}
       </div>
     </div>
   );
 }
 
 export default function DevVisualizerSwitcher() {
-  // Only show in development or if ?viz param is present
-  const isDev = process.env.NODE_ENV === "development";
-  
-  if (!isDev) {
-    return null;
-  }
-
+  if (process.env.NODE_ENV !== "development") return null;
   return (
     <Suspense fallback={null}>
       <DevVisualizerSwitcherInner />
