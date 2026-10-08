@@ -10,11 +10,14 @@ import {
   isShaderSceneId,
   type ShaderSceneId,
 } from "@/lib/shaderScenes";
+import { sampleTempo } from "@/lib/tempoClock";
 
 interface ShaderVisualizerProps {
   sceneId: ShaderSceneId;
   className?: string;
   height?: number | "fill";
+  /** Per-track palette override. Empty keeps the port's muted accent. */
+  accent?: string | null;
 }
 
 function supportsWebGL(): boolean {
@@ -107,18 +110,50 @@ function WaveformFallback({
   );
 }
 
+const MUTED_ACCENT = new THREE.Color("#9a7b62");
+
+function applyAccent(material: THREE.ShaderMaterial, accent: string | null) {
+  const uniform = material.uniforms.accent;
+  if (!uniform) return;
+  const color = uniform.value as THREE.Color;
+  if (!accent) {
+    color.copy(MUTED_ACCENT);
+    return;
+  }
+  try {
+    color.set(accent);
+  } catch {
+    color.copy(MUTED_ACCENT);
+  }
+}
+
+function containFrame(mesh: THREE.Mesh, aspect: number | undefined, w: number, h: number) {
+  if (!aspect || w < 1 || h < 1) {
+    mesh.scale.set(1, 1, 1);
+    return;
+  }
+  const view = w / h;
+  if (view > aspect) mesh.scale.set(aspect / view, 1, 1);
+  else mesh.scale.set(1, view / aspect, 1);
+}
+
 export default function ShaderVisualizer({
   sceneId,
   className = "",
   height = "fill",
+  accent = null,
 }: ShaderVisualizerProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { analyserNode, status } = usePlayer();
+  const { analyserNode, status, getPlaybackTime } = usePlayer();
   const analyserRef = useRef(analyserNode);
   const statusRef = useRef(status);
+  const playbackRef = useRef(getPlaybackTime);
+  const accentRef = useRef(accent);
   analyserRef.current = analyserNode;
   statusRef.current = status;
+  playbackRef.current = getPlaybackTime;
+  accentRef.current = accent;
   const [webglOk, setWebglOk] = useState(true);
   const sceneIdRef = useRef(sceneId);
   sceneIdRef.current = isShaderSceneId(sceneId) ? sceneId : DEFAULT_SHADER_SCENE;
@@ -155,6 +190,7 @@ export default function ShaderVisualizer({
 
     const geometry = new THREE.PlaneGeometry(2, 2);
     let material = makeMaterial(sceneIdRef.current);
+    applyAccent(material, accentRef.current);
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
@@ -167,7 +203,9 @@ export default function ShaderVisualizer({
       const w = wrap.clientWidth;
       const h = wrap.clientHeight;
       if (w < 1 || h < 1) return;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(w, h, false);
+      containFrame(mesh, getShaderScene(sceneIdRef.current).frameAspect, w, h);
     };
 
     const ro = new ResizeObserver(resize);
@@ -176,9 +214,11 @@ export default function ShaderVisualizer({
 
     const applyScene = (id: ShaderSceneId) => {
       const next = makeMaterial(id);
+      applyAccent(next, accentRef.current);
       mesh.material = next;
       material.dispose();
       material = next;
+      containFrame(mesh, getShaderScene(id).frameAspect, wrap.clientWidth, wrap.clientHeight);
     };
 
     const tick = (now: number) => {
@@ -187,6 +227,12 @@ export default function ShaderVisualizer({
       lastTs = now;
       elapsed += dt;
       material.uniforms.time.value = elapsed;
+      applyAccent(material, accentRef.current);
+      const tempo = sampleTempo(playbackRef.current());
+      if (material.uniforms.tempoKnown) material.uniforms.tempoKnown.value = tempo.known ? 1 : 0;
+      if (material.uniforms.beat) material.uniforms.beat.value = tempo.beat;
+      if (material.uniforms.beatPhase) material.uniforms.beatPhase.value = tempo.phase;
+      if (material.uniforms.bpm) material.uniforms.bpm.value = tempo.bpm || 1;
 
       const wanted = sceneIdRef.current;
       if (material.userData.sceneId !== wanted) applyScene(wanted);
@@ -255,11 +301,16 @@ function makeMaterial(id: ShaderSceneId): THREE.ShaderMaterial {
   const mat = new THREE.ShaderMaterial({
     vertexShader: SHADER_VERTEX,
     fragmentShader: scene.fragmentShader,
-    uniforms: {
+      uniforms: {
       time: { value: 0 },
       audioLow: { value: 0 },
       audioMid: { value: 0 },
       audioHigh: { value: 0 },
+      accent: { value: MUTED_ACCENT.clone() },
+      tempoKnown: { value: 0 },
+      beat: { value: 0 },
+      beatPhase: { value: 0 },
+      bpm: { value: 1 },
     },
   });
   mat.userData.sceneId = id;

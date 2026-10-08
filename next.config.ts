@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Dev-only archive previews are read from disk in `next dev`.
+  // Keep them out of the production server trace.
+  outputFileTracingExcludes: {
+    "*": ["./vendor/iwrzwr-visual-archive/**"],
+  },
   async headers() {
     return [
       {

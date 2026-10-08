@@ -23,16 +23,10 @@
       "kind": "audio",
       "src": "/audio/journeys/innerconflictmix2.mp3",
       "year": 2008,
-      "notes": "Rhythmic tension held in suspension.",
+      "notes": "Rhythmic tension held in suspension. Visualizer: Phase Braid — interwoven signals creating a calm, hypnotic pattern that reflects the track's rhythmic complexity.",
       "meta": {
         "bpm": 92,
-        "visualizer": "audio-ripples",
-        "radialViz": {
-          "trailFadeSeconds": 8,
-          "rotationSpeed": 0.008,
-          "lineWidth": 0.45,
-          "bands": 96
-        }
+        "visualizer": "phase-braid"
       }
     },
     {
@@ -145,10 +139,10 @@
       "title": "Absynth Play",
       "kind": "audio",
       "src": "/audio/journeys/absynth-play.m4a",
-      "notes": "Placeholder notes — refine credits and description.",
+      "notes": "Synthesizer exploration. Visualizer: Spectrum Ribbon — flowing, layered waves in muted tones complement the synth textures.",
       "meta": {
         "format": "m4a",
-        "visualizer": "audio-ripples"
+        "visualizer": "spectrum-ribbon"
       }
     },
     {
@@ -156,25 +150,11 @@
       "title": "432.1",
       "kind": "audio",
       "src": "/audio/journeys/432-1.m4a",
-      "notes": "Placeholder notes — refine credits and description.",
+      "notes": "Tuned to 432 Hz. Visualizer: Contour Memory — layered topographic lines that recede into the distance, echoing the track's meditative depth.",
       "meta": {
         "format": "m4a",
-        "visualizer": "rainy-days",
-        "visualizerColor": "#A89070",
-        "radialViz": {
-          "trailFadeSeconds": 10,
-          "rotationSpeed": 0.006,
-          "lineWidth": 0.4,
-          "bands": 72
-        },
-        "particleViz": {
-          "counterRing": false,
-          "maxSparksPerFrame": 4,
-          "sparkThreshold": 0.22,
-          "burstSpeed": 40,
-          "burstCount": 6,
-          "ambientDriftRate": 3
-        }
+        "visualizer": "contour-memory",
+        "visualizerColor": "#A89070"
       }
     },
     {
@@ -234,10 +214,10 @@
       "title": "Tales From A Robot",
       "kind": "audio",
       "src": "/audio/journeys/tales-from-a-robot.m4a",
-      "poster": "/img/tracks/tales.png",
-      "notes": "Artwork poster replaces live visualizer.",
+      "notes": "Mechanical rhythms and synthetic textures. Visualizer: Packet Stitch — data packets moving past a read head, perfectly matching the track's digital, robotic aesthetic.",
       "meta": {
-        "format": "m4a"
+        "format": "m4a",
+        "visualizer": "packet-stitch"
       }
     },
     {

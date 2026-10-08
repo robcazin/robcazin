@@ -12,7 +12,8 @@ export interface Track {
   credits?: string;
   notes?: string;
   // Intentionally open — every key/value is rendered as a monospace
-  // "lab readout" row (tuning, bpm, seed, generative, software, era, ...).
+  // "lab readout" row (tuning, bpm, beatOffset, seed, generative, software, era, ...).
+  // meta.bpm (number) and optional meta.beatOffset (seconds) lock visualizer tempo.
   meta?: Record<string, unknown>;
   accent?: string; // per-track accent color override
 }

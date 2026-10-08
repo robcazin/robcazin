@@ -2,6 +2,10 @@
  * Audio-reactive GLSL scenes vendored from
  * https://github.com/TjardoOrtan/audio-reactive-shaders (no license file).
  *
+ * Includes visualizers ported from iwrzwr-visual-archive by Kagan Yaldizkaya
+ * (MIT License, Copyright 2026 Kagan Yaldizkaya)
+ * https://github.com/kaganin/iwrzwr-visual-archive
+ *
  * Preview in dev: ?viz=<id>
  */
 
@@ -10,21 +14,44 @@ import * as audioMatrix from "./audio-matrix";
 import * as audioRipples from "./audio-ripples";
 import * as audioVortex from "./audio-vortex";
 import * as audioWaves from "./audio-waves";
+import * as xyDust from "./xy-dust";
 import * as bassVortex from "./bass-vortex";
+import * as contourMemory from "./contour-memory";
 import * as cosmicStorm from "./cosmic-storm";
+import * as fineSpectrum from "./fine-spectrum";
+import * as factorConstellation from "./factor-constellation";
 import * as fractalSphere from "./fractal-sphere";
+import * as gateRegister from "./gate-register";
 import * as gyroidPulse from "./gyroid-pulse";
+import * as liquidWave from "./liquid-wave";
 import * as kaleidoscope from "./kaleidoscope";
+import * as monoWave from "./mono-wave";
 import * as neonGrid from "./neon-grid";
+import * as packetStitch from "./packet-stitch";
+import * as perforationLogic from "./perforation-logic";
+import * as phaseBraid from "./phase-braid";
+import * as phosphorSweep from "./phosphor-sweep";
 import * as rainyDays from "./rainy-days";
+import * as rankSieve from "./rank-sieve";
 import * as raveLasers from "./rave-lasers";
+import * as silkLayers from "./silk-layers";
 import * as sacredGeometry from "./sacred-geometry";
+import * as spectralTape from "./spectral-tape";
 import * as shaytanRevived from "./shaytan-revived";
+import * as spectrumRibbon from "./spectrum-ribbon";
+import * as asciiStream from "./ascii-stream";
+import * as teletextPulse from "./teletext-pulse";
+import * as terminalTrace from "./terminal-trace";
+import * as vectorScope from "./vector-scope";
+import * as wireframeEcho from "./wireframe-echo";
+import * as transcodeWindow from "./transcode-window";
 
 export interface ShaderScene {
   id: ShaderSceneId;
   name: string;
   fragmentShader: string;
+  /** Design width/height. The quad is contained and centered at this ratio. */
+  frameAspect?: number;
 }
 
 const scenes = [
@@ -43,6 +70,28 @@ const scenes = [
   audioWaves,
   audioVortex,
   raveLasers,
+  // iwrzwr-visual-archive ports
+  spectrumRibbon,
+  monoWave,
+  silkLayers,
+  liquidWave,
+  fineSpectrum,
+  phosphorSweep,
+  xyDust,
+  phaseBraid,
+  terminalTrace,
+  contourMemory,
+  packetStitch,
+  teletextPulse,
+  vectorScope,
+  wireframeEcho,
+  asciiStream,
+  spectralTape,
+  transcodeWindow,
+  perforationLogic,
+  rankSieve,
+  factorConstellation,
+  gateRegister,
 ] as const;
 
 export type ShaderSceneId = (typeof scenes)[number]["id"];

@@ -1,0 +1,1397 @@
+{
+  "source": "https://github.com/kaganin/iwrzwr-visual-archive",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Kagan Yaldizkaya",
+  "sketches": [
+    {
+      "id": "iwr:soundwave-directions.html:0",
+      "name": "Spectrum Ribbon",
+      "category": "01 \u2014 soundwave directions",
+      "file": "studies/soundwave-directions.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:soundwave-directions.html:1",
+      "name": "Mono Wave",
+      "category": "01 \u2014 soundwave directions",
+      "file": "studies/soundwave-directions.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:soundwave-directions.html:2",
+      "name": "Silk Layers",
+      "category": "01 \u2014 soundwave directions",
+      "file": "studies/soundwave-directions.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:soundwave-directions.html:3",
+      "name": "Liquid Wave",
+      "category": "01 \u2014 soundwave directions",
+      "file": "studies/soundwave-directions.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:soundwave-directions.html:4",
+      "name": "Fine Spectrum",
+      "category": "01 \u2014 soundwave directions",
+      "file": "studies/soundwave-directions.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:geek-soundwaves.html:0",
+      "name": "Teletext Pulse",
+      "category": "02 \u2014 geek soundwaves",
+      "file": "studies/geek-soundwaves.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:geek-soundwaves.html:1",
+      "name": "Vector Scope",
+      "category": "02 \u2014 geek soundwaves",
+      "file": "studies/geek-soundwaves.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:geek-soundwaves.html:2",
+      "name": "Wireframe Echo",
+      "category": "02 \u2014 geek soundwaves",
+      "file": "studies/geek-soundwaves.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:geek-soundwaves.html:3",
+      "name": "ASCII Stream",
+      "category": "02 \u2014 geek soundwaves",
+      "file": "studies/geek-soundwaves.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:geek-soundwaves.html:4",
+      "name": "Spectral Tape",
+      "category": "02 \u2014 geek soundwaves",
+      "file": "studies/geek-soundwaves.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:vector-soundwave-studies.html:0",
+      "name": "Phosphor Sweep",
+      "category": "03 \u2014 vector studies",
+      "file": "studies/vector-soundwave-studies.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:vector-soundwave-studies.html:1",
+      "name": "XY Dust",
+      "category": "03 \u2014 vector studies",
+      "file": "studies/vector-soundwave-studies.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:vector-soundwave-studies.html:2",
+      "name": "Phase Braid",
+      "category": "03 \u2014 vector studies",
+      "file": "studies/vector-soundwave-studies.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:vector-soundwave-studies.html:3",
+      "name": "Terminal Trace",
+      "category": "03 \u2014 vector studies",
+      "file": "studies/vector-soundwave-studies.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:vector-soundwave-studies.html:4",
+      "name": "Contour Memory",
+      "category": "03 \u2014 vector studies",
+      "file": "studies/vector-soundwave-studies.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:sound-machines.html:0",
+      "name": "Resonance Sand",
+      "category": "04 \u2014 sound machines",
+      "file": "studies/sound-machines.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:sound-machines.html:1",
+      "name": "Harmonic Motor",
+      "category": "04 \u2014 sound machines",
+      "file": "studies/sound-machines.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:sound-machines.html:2",
+      "name": "Spring Rail",
+      "category": "04 \u2014 sound machines",
+      "file": "studies/sound-machines.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:sound-machines.html:3",
+      "name": "Pendulum Choir",
+      "category": "04 \u2014 sound machines",
+      "file": "studies/sound-machines.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:sound-machines.html:4",
+      "name": "Grain Conveyor",
+      "category": "04 \u2014 sound machines",
+      "file": "studies/sound-machines.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-01-raster-protocol.html:0",
+      "name": "Gate Register",
+      "category": "05 \u2014 01 raster protocol",
+      "file": "studies/night-01-raster-protocol.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-01-raster-protocol.html:1",
+      "name": "Packet Stitch",
+      "category": "05 \u2014 01 raster protocol",
+      "file": "studies/night-01-raster-protocol.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-01-raster-protocol.html:2",
+      "name": "Raster Comb",
+      "category": "05 \u2014 01 raster protocol",
+      "file": "studies/night-01-raster-protocol.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-01-raster-protocol.html:3",
+      "name": "Parity Bloom",
+      "category": "05 \u2014 01 raster protocol",
+      "file": "studies/night-01-raster-protocol.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-01-raster-protocol.html:4",
+      "name": "Address Bus",
+      "category": "05 \u2014 01 raster protocol",
+      "file": "studies/night-01-raster-protocol.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-02-causal-instruments.html:0",
+      "name": "Coupled Nodes",
+      "category": "06 \u2014 02 causal instruments",
+      "file": "studies/night-02-causal-instruments.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-02-causal-instruments.html:1",
+      "name": "Bearing Fan",
+      "category": "06 \u2014 02 causal instruments",
+      "file": "studies/night-02-causal-instruments.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-02-causal-instruments.html:2",
+      "name": "Causal Relay",
+      "category": "06 \u2014 02 causal instruments",
+      "file": "studies/night-02-causal-instruments.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-02-causal-instruments.html:3",
+      "name": "State Boxes",
+      "category": "06 \u2014 02 causal instruments",
+      "file": "studies/night-02-causal-instruments.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-02-causal-instruments.html:4",
+      "name": "Branch Memory",
+      "category": "06 \u2014 02 causal instruments",
+      "file": "studies/night-02-causal-instruments.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-03-pocket-machines.html:0",
+      "name": "Segment Relay",
+      "category": "07 \u2014 03 pocket machines",
+      "file": "studies/night-03-pocket-machines.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-03-pocket-machines.html:1",
+      "name": "Compression Treaty",
+      "category": "07 \u2014 03 pocket machines",
+      "file": "studies/night-03-pocket-machines.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-03-pocket-machines.html:2",
+      "name": "Splice Loom",
+      "category": "07 \u2014 03 pocket machines",
+      "file": "studies/night-03-pocket-machines.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-03-pocket-machines.html:3",
+      "name": "Orbit Punchcard",
+      "category": "07 \u2014 03 pocket machines",
+      "file": "studies/night-03-pocket-machines.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-03-pocket-machines.html:4",
+      "name": "Sample Hold Ladder",
+      "category": "07 \u2014 03 pocket machines",
+      "file": "studies/night-03-pocket-machines.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-04-calibration-desk.html:0",
+      "name": "Calibrated Horizons",
+      "category": "08 \u2014 04 calibration desk",
+      "file": "studies/night-04-calibration-desk.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-04-calibration-desk.html:1",
+      "name": "Delay Vernier",
+      "category": "08 \u2014 04 calibration desk",
+      "file": "studies/night-04-calibration-desk.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-04-calibration-desk.html:2",
+      "name": "Phase Aperture",
+      "category": "08 \u2014 04 calibration desk",
+      "file": "studies/night-04-calibration-desk.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-04-calibration-desk.html:3",
+      "name": "Pursuit Orbit",
+      "category": "08 \u2014 04 calibration desk",
+      "file": "studies/night-04-calibration-desk.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-04-calibration-desk.html:4",
+      "name": "Folding Topology",
+      "category": "08 \u2014 04 calibration desk",
+      "file": "studies/night-04-calibration-desk.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-05-plotter-logic.html:0",
+      "name": "Broken Grid",
+      "category": "09 \u2014 05 plotter logic",
+      "file": "studies/night-05-plotter-logic.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-05-plotter-logic.html:1",
+      "name": "Step Weave",
+      "category": "09 \u2014 05 plotter logic",
+      "file": "studies/night-05-plotter-logic.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-05-plotter-logic.html:2",
+      "name": "Cell Courier",
+      "category": "09 \u2014 05 plotter logic",
+      "file": "studies/night-05-plotter-logic.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-05-plotter-logic.html:3",
+      "name": "Factor Constellation",
+      "category": "09 \u2014 05 plotter logic",
+      "file": "studies/night-05-plotter-logic.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-05-plotter-logic.html:4",
+      "name": "Gesture Fragments",
+      "category": "09 \u2014 05 plotter logic",
+      "file": "studies/night-05-plotter-logic.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-06-selective-memory.html:0",
+      "name": "Rank Sieve",
+      "category": "10 \u2014 06 selective memory",
+      "file": "studies/night-06-selective-memory.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-06-selective-memory.html:1",
+      "name": "Exchange Tray",
+      "category": "10 \u2014 06 selective memory",
+      "file": "studies/night-06-selective-memory.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-06-selective-memory.html:2",
+      "name": "Impression Press",
+      "category": "10 \u2014 06 selective memory",
+      "file": "studies/night-06-selective-memory.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-06-selective-memory.html:3",
+      "name": "Slice Loupe",
+      "category": "10 \u2014 06 selective memory",
+      "file": "studies/night-06-selective-memory.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-06-selective-memory.html:4",
+      "name": "Overstrike Seal",
+      "category": "10 \u2014 06 selective memory",
+      "file": "studies/night-06-selective-memory.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-07-signal-translations.html:0",
+      "name": "Wake Field",
+      "category": "11 \u2014 07 signal translations",
+      "file": "studies/night-07-signal-translations.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-07-signal-translations.html:1",
+      "name": "Revision Strata",
+      "category": "11 \u2014 07 signal translations",
+      "file": "studies/night-07-signal-translations.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-07-signal-translations.html:2",
+      "name": "Perforation Logic",
+      "category": "11 \u2014 07 signal translations",
+      "file": "studies/night-07-signal-translations.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-07-signal-translations.html:3",
+      "name": "Transcode Window",
+      "category": "11 \u2014 07 signal translations",
+      "file": "studies/night-07-signal-translations.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-07-signal-translations.html:4",
+      "name": "Wire Loom",
+      "category": "11 \u2014 07 signal translations",
+      "file": "studies/night-07-signal-translations.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-08-quiet-telemetry.html:0",
+      "name": "Skew Profile",
+      "category": "12 \u2014 08 quiet telemetry",
+      "file": "studies/night-08-quiet-telemetry.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-08-quiet-telemetry.html:1",
+      "name": "Duration Receipt",
+      "category": "12 \u2014 08 quiet telemetry",
+      "file": "studies/night-08-quiet-telemetry.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-08-quiet-telemetry.html:2",
+      "name": "Stepped Throat",
+      "category": "12 \u2014 08 quiet telemetry",
+      "file": "studies/night-08-quiet-telemetry.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-08-quiet-telemetry.html:3",
+      "name": "Shear Belt",
+      "category": "12 \u2014 08 quiet telemetry",
+      "file": "studies/night-08-quiet-telemetry.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-08-quiet-telemetry.html:4",
+      "name": "Carrier Window",
+      "category": "12 \u2014 08 quiet telemetry",
+      "file": "studies/night-08-quiet-telemetry.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-09-control-laws.html:0",
+      "name": "Quantized Handoff",
+      "category": "13 \u2014 09 control laws",
+      "file": "studies/night-09-control-laws.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-09-control-laws.html:1",
+      "name": "Clipped Travel",
+      "category": "13 \u2014 09 control laws",
+      "file": "studies/night-09-control-laws.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-09-control-laws.html:2",
+      "name": "Retrigger Ratchet",
+      "category": "13 \u2014 09 control laws",
+      "file": "studies/night-09-control-laws.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-09-control-laws.html:3",
+      "name": "Context Lease",
+      "category": "13 \u2014 09 control laws",
+      "file": "studies/night-09-control-laws.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-09-control-laws.html:4",
+      "name": "Schmitt Memory",
+      "category": "13 \u2014 09 control laws",
+      "file": "studies/night-09-control-laws.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-10-field-operations.html:0",
+      "name": "Section Gate",
+      "category": "14 \u2014 10 field operations",
+      "file": "studies/night-10-field-operations.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-10-field-operations.html:1",
+      "name": "Field Strain",
+      "category": "14 \u2014 10 field operations",
+      "file": "studies/night-10-field-operations.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-10-field-operations.html:2",
+      "name": "Compression Atlas",
+      "category": "14 \u2014 10 field operations",
+      "file": "studies/night-10-field-operations.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-10-field-operations.html:3",
+      "name": "Flare Stem",
+      "category": "14 \u2014 10 field operations",
+      "file": "studies/night-10-field-operations.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-10-field-operations.html:4",
+      "name": "Event Slots",
+      "category": "14 \u2014 10 field operations",
+      "file": "studies/night-10-field-operations.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-11-shared-resources.html:0",
+      "name": "Choke Pair",
+      "category": "15 \u2014 11 shared resources",
+      "file": "studies/night-11-shared-resources.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-11-shared-resources.html:1",
+      "name": "Voice Vacancy",
+      "category": "15 \u2014 11 shared resources",
+      "file": "studies/night-11-shared-resources.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-11-shared-resources.html:2",
+      "name": "Docked Phrase",
+      "category": "15 \u2014 11 shared resources",
+      "file": "studies/night-11-shared-resources.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-11-shared-resources.html:3",
+      "name": "Masked Recall",
+      "category": "15 \u2014 11 shared resources",
+      "file": "studies/night-11-shared-resources.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-11-shared-resources.html:4",
+      "name": "Routed Emphasis",
+      "category": "15 \u2014 11 shared resources",
+      "file": "studies/night-11-shared-resources.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-12-inference-engines.html:0",
+      "name": "Ricochet Register",
+      "category": "16 \u2014 12 inference engines",
+      "file": "studies/night-12-inference-engines.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-12-inference-engines.html:1",
+      "name": "Identity Hold",
+      "category": "16 \u2014 12 inference engines",
+      "file": "studies/night-12-inference-engines.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-12-inference-engines.html:2",
+      "name": "Critical Sections",
+      "category": "16 \u2014 12 inference engines",
+      "file": "studies/night-12-inference-engines.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-12-inference-engines.html:3",
+      "name": "Deferred Yield",
+      "category": "16 \u2014 12 inference engines",
+      "file": "studies/night-12-inference-engines.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-12-inference-engines.html:4",
+      "name": "Range Reduction",
+      "category": "16 \u2014 12 inference engines",
+      "file": "studies/night-12-inference-engines.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-13-conditional-machines.html:0",
+      "name": "Confidence Fence",
+      "category": "17 \u2014 13 conditional machines",
+      "file": "studies/night-13-conditional-machines.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-13-conditional-machines.html:1",
+      "name": "Vector Closure",
+      "category": "17 \u2014 13 conditional machines",
+      "file": "studies/night-13-conditional-machines.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-13-conditional-machines.html:2",
+      "name": "Cycle Escapement",
+      "category": "17 \u2014 13 conditional machines",
+      "file": "studies/night-13-conditional-machines.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-13-conditional-machines.html:3",
+      "name": "Reversible Detour",
+      "category": "17 \u2014 13 conditional machines",
+      "file": "studies/night-13-conditional-machines.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-13-conditional-machines.html:4",
+      "name": "Mutation Quota",
+      "category": "17 \u2014 13 conditional machines",
+      "file": "studies/night-13-conditional-machines.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-14-visible-invariants.html:0",
+      "name": "Moment Balance",
+      "category": "18 \u2014 14 visible invariants",
+      "file": "studies/night-14-visible-invariants.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-14-visible-invariants.html:1",
+      "name": "Marginal Print",
+      "category": "18 \u2014 14 visible invariants",
+      "file": "studies/night-14-visible-invariants.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-14-visible-invariants.html:2",
+      "name": "Area Contract",
+      "category": "18 \u2014 14 visible invariants",
+      "file": "studies/night-14-visible-invariants.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-14-visible-invariants.html:3",
+      "name": "Registration Residual",
+      "category": "18 \u2014 14 visible invariants",
+      "file": "studies/night-14-visible-invariants.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-14-visible-invariants.html:4",
+      "name": "Occlusion Order",
+      "category": "18 \u2014 14 visible invariants",
+      "file": "studies/night-14-visible-invariants.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:night-15-procedural-marks.html:0",
+      "name": "Order Residue",
+      "category": "19 \u2014 15 procedural marks",
+      "file": "studies/night-15-procedural-marks.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:night-15-procedural-marks.html:1",
+      "name": "Euclidean Packing",
+      "category": "19 \u2014 15 procedural marks",
+      "file": "studies/night-15-procedural-marks.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:night-15-procedural-marks.html:2",
+      "name": "Error Escrow",
+      "category": "19 \u2014 15 procedural marks",
+      "file": "studies/night-15-procedural-marks.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:night-15-procedural-marks.html:3",
+      "name": "Series Product",
+      "category": "19 \u2014 15 procedural marks",
+      "file": "studies/night-15-procedural-marks.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:night-15-procedural-marks.html:4",
+      "name": "Nested Span",
+      "category": "19 \u2014 15 procedural marks",
+      "file": "studies/night-15-procedural-marks.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:0",
+      "name": "Carry Cascade",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:1",
+      "name": "Diamond Relay",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:2",
+      "name": "Bit Weave",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:3",
+      "name": "Phase Shutter",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:4",
+      "name": "Binary Tide",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:5",
+      "name": "Voxel Lung",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 5
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:6",
+      "name": "Fault Orchard",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 6
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:7",
+      "name": "Orbit Register",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 7
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:8",
+      "name": "XOR Interference",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 8
+    },
+    {
+      "id": "iwr:bloom-ten-studies.html:9",
+      "name": "Sieve Memory",
+      "category": "20 \u2014 bloom \u00b7 10 alternatives",
+      "file": "studies/bloom-ten-studies.html",
+      "item": 9
+    },
+    {
+      "id": "iwr:matrix-direction-studies.html:0",
+      "name": "Gravity Curtain",
+      "category": "21 \u2014 matrix \u00b7 directions",
+      "file": "studies/matrix-direction-studies.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:matrix-direction-studies.html:1",
+      "name": "Oblique Relay",
+      "category": "21 \u2014 matrix \u00b7 directions",
+      "file": "studies/matrix-direction-studies.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:matrix-direction-studies.html:2",
+      "name": "Twin Helix",
+      "category": "21 \u2014 matrix \u00b7 directions",
+      "file": "studies/matrix-direction-studies.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:matrix-direction-studies.html:3",
+      "name": "Spiral Sink",
+      "category": "21 \u2014 matrix \u00b7 directions",
+      "file": "studies/matrix-direction-studies.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:matrix-direction-studies.html:4",
+      "name": "Corner Tide",
+      "category": "21 \u2014 matrix \u00b7 directions",
+      "file": "studies/matrix-direction-studies.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:0",
+      "name": "Figure Eight",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:1",
+      "name": "Ricochet Register",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:2",
+      "name": "Square Circuit",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:3",
+      "name": "Pendulum Bank",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:4",
+      "name": "Fountain Fold",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:5",
+      "name": "Counter Rotors",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 5
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:6",
+      "name": "Hourglass Drift",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 6
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:7",
+      "name": "Junction Turn",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 7
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:8",
+      "name": "Orbital Shells",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 8
+    },
+    {
+      "id": "iwr:matrix-routes-ten.html:9",
+      "name": "Accordion Field",
+      "category": "22 \u2014 matrix \u00b7 routes",
+      "file": "studies/matrix-routes-ten.html",
+      "item": 9
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:0",
+      "name": "Kick Ricochet",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:1",
+      "name": "Snare Prism",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:2",
+      "name": "Hat Escapement",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:3",
+      "name": "Impact Cage",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:4",
+      "name": "Pluck Rebound",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:5",
+      "name": "Envelope Orbit",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 5
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:6",
+      "name": "Band Satellites",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 6
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:7",
+      "name": "Phase Gyro",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 7
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:8",
+      "name": "Resonance Petals",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 8
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:9",
+      "name": "Stereo Sling",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 9
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:10",
+      "name": "String Bridge",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 10
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:11",
+      "name": "Fold Bank",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 11
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:12",
+      "name": "Coupled Frames",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 12
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:13",
+      "name": "Pulse Louvers",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 13
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:14",
+      "name": "Spectral Fan",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 14
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:15",
+      "name": "Echo Chambers",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 15
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:16",
+      "name": "Memory Loom",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 16
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:17",
+      "name": "Attack Ledger",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 17
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:18",
+      "name": "Decay Halo",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 18
+    },
+    {
+      "id": "iwr:sound-motion-four-series.html:19",
+      "name": "Diffusion Bed",
+      "category": "23 \u2014 sound and motion \u00b7 4 \u00d7 5",
+      "file": "studies/sound-motion-four-series.html",
+      "item": 19
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:0",
+      "name": "Echo Orchard",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:1",
+      "name": "Halo Cache",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:2",
+      "name": "Band Ledger",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:3",
+      "name": "Diamond Spill",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:4",
+      "name": "Orbital Dust",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:5",
+      "name": "Twin Wells",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 5
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:6",
+      "name": "Spiral Retain",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 6
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:7",
+      "name": "Pulse Quilt",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 7
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:8",
+      "name": "Rebound Cloud",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 8
+    },
+    {
+      "id": "iwr:cell-memory-ten.html:9",
+      "name": "Diagonal Sediment",
+      "category": "24 \u2014 cell / trace / memory",
+      "file": "studies/cell-memory-ten.html",
+      "item": 9
+    },
+    {
+      "id": "iwr:fan-satellites-refined.html:0",
+      "name": "Spectral Fan",
+      "category": "25 \u2014 spectral fan & band satellites",
+      "file": "studies/fan-satellites-refined.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:fan-satellites-refined.html:1",
+      "name": "Band Satellites",
+      "category": "25 \u2014 spectral fan & band satellites",
+      "file": "studies/fan-satellites-refined.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:signal-assembly.html:0",
+      "name": "Signal assembly",
+      "category": "26 \u2014 signal assembly",
+      "file": "studies/signal-assembly.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:phase-mechanics.html:0",
+      "name": "Phase mechanics",
+      "category": "27 \u2014 phase mechanics",
+      "file": "studies/phase-mechanics.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:orbital-memory.html:0",
+      "name": "Orbital memory",
+      "category": "28 \u2014 orbital memory",
+      "file": "studies/orbital-memory.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:circle-tape-studies.html:0",
+      "name": "Tape Head",
+      "category": "Circle tape \u00b7 first series",
+      "file": "studies/circle-tape-studies.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:circle-tape-studies.html:1",
+      "name": "Growing Take",
+      "category": "Circle tape \u00b7 first series",
+      "file": "studies/circle-tape-studies.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:circle-tape-studies.html:2",
+      "name": "Stereo Memory",
+      "category": "Circle tape \u00b7 first series",
+      "file": "studies/circle-tape-studies.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:circle-tape-studies.html:3",
+      "name": "Punch Window",
+      "category": "Circle tape \u00b7 first series",
+      "file": "studies/circle-tape-studies.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:circle-tape-studies.html:4",
+      "name": "Loop Overwrite",
+      "category": "Circle tape \u00b7 first series",
+      "file": "studies/circle-tape-studies.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:circle-tape-studies-two.html:0",
+      "name": "Radial Take",
+      "category": "Circle tape \u00b7 second series",
+      "file": "studies/circle-tape-studies-two.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:circle-tape-studies-two.html:1",
+      "name": "Folded Tape",
+      "category": "Circle tape \u00b7 second series",
+      "file": "studies/circle-tape-studies-two.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:circle-tape-studies-two.html:2",
+      "name": "Spool Memory",
+      "category": "Circle tape \u00b7 second series",
+      "file": "studies/circle-tape-studies-two.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:circle-tape-studies-two.html:3",
+      "name": "Grain Shutter",
+      "category": "Circle tape \u00b7 second series",
+      "file": "studies/circle-tape-studies-two.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:circle-tape-studies-two.html:4",
+      "name": "Contour Stack",
+      "category": "Circle tape \u00b7 second series",
+      "file": "studies/circle-tape-studies-two.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:voice-head-studies.html:0",
+      "name": "Signal Stem",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:voice-head-studies.html:1",
+      "name": "Twin Folds",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:voice-head-studies.html:2",
+      "name": "Reed Stack",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:voice-head-studies.html:3",
+      "name": "Phoneme Prints",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:voice-head-studies.html:4",
+      "name": "Formant Loom",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:voice-head-studies.html:5",
+      "name": "Echo Chamber",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 5
+    },
+    {
+      "id": "iwr:voice-head-studies.html:6",
+      "name": "Ear Aperture",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 6
+    },
+    {
+      "id": "iwr:voice-head-studies.html:7",
+      "name": "Bone Relay",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 7
+    },
+    {
+      "id": "iwr:voice-head-studies.html:8",
+      "name": "Breath Bellows",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 8
+    },
+    {
+      "id": "iwr:voice-head-studies.html:9",
+      "name": "Duplex Organ",
+      "category": "Voice head",
+      "file": "studies/voice-head-studies.html",
+      "item": 9
+    },
+    {
+      "id": "iwr:signal-stem-profile.html:0",
+      "name": "Signal Stem",
+      "category": "Signal stem",
+      "file": "studies/signal-stem-profile.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:0",
+      "name": "Tape Goblin",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:1",
+      "name": "Punch Clock",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:2",
+      "name": "Tape Eater",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:3",
+      "name": "Eight Arm Dub",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:4",
+      "name": "Resonant Bird",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:5",
+      "name": "Moonwalk Unit",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 5
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:6",
+      "name": "Moth Choir",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 6
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:7",
+      "name": "X-Ray Hound",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 7
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:8",
+      "name": "Reel Rider",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 8
+    },
+    {
+      "id": "iwr:playback-creature-lab.html:9",
+      "name": "Ghost Conductor",
+      "category": "Playback creature lab",
+      "file": "studies/playback-creature-lab.html",
+      "item": 9
+    },
+    {
+      "id": "iwr:mixtape-monkeys.html:0",
+      "name": "Sleep Tape",
+      "category": "Mixtape monkeys",
+      "file": "studies/mixtape-monkeys.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:mixtape-monkeys.html:1",
+      "name": "Window Seat",
+      "category": "Mixtape monkeys",
+      "file": "studies/mixtape-monkeys.html",
+      "item": 1
+    },
+    {
+      "id": "iwr:mixtape-monkeys.html:2",
+      "name": "Deep Listener",
+      "category": "Mixtape monkeys",
+      "file": "studies/mixtape-monkeys.html",
+      "item": 2
+    },
+    {
+      "id": "iwr:mixtape-monkeys.html:3",
+      "name": "Tail Reception",
+      "category": "Mixtape monkeys",
+      "file": "studies/mixtape-monkeys.html",
+      "item": 3
+    },
+    {
+      "id": "iwr:mixtape-monkeys.html:4",
+      "name": "Shared Frequency",
+      "category": "Mixtape monkeys",
+      "file": "studies/mixtape-monkeys.html",
+      "item": 4
+    },
+    {
+      "id": "iwr:pocket-listener-nod.html:0",
+      "name": "Pocket Listener",
+      "category": "Pocket listener",
+      "file": "studies/pocket-listener-nod.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:branch-choir.html:0",
+      "name": "Branch Solo",
+      "category": "Branch choir",
+      "file": "studies/branch-choir.html",
+      "item": 0
+    },
+    {
+      "id": "iwr:profile-reference.html:0",
+      "name": "Profile Reference",
+      "category": "Profile reference",
+      "file": "studies/profile-reference.html",
+      "item": 0
+    }
+  ],
+  "skipped": [
+    {
+      "id": "all",
+      "file": "all.html",
+      "reason": "Index page that embeds the 152 sketches; not a sketch itself."
+    },
+    {
+      "id": "latest",
+      "file": "latest.html",
+      "reason": "Curated selection of sketches already listed above."
+    },
+    {
+      "id": "twenty",
+      "file": "twenty.html",
+      "reason": "Curated selection of sketches already listed above."
+    },
+    {
+      "id": "square-signal-assembly",
+      "file": "square-signal-assembly.html",
+      "reason": "Earlier speed variant of signal assembly (section 26)."
+    },
+    {
+      "id": "square-signal-assembly-slow",
+      "file": "square-signal-assembly-slow.html",
+      "reason": "Slower duplicate of signal assembly (section 26)."
+    },
+    {
+      "id": "settings-icons",
+      "file": "settings-icons.html",
+      "reason": "SVG settings-icon experiments, not audio sketches."
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { PlayerProvider } from "@/contexts/PlayerContext";
 import SiteBackground from "@/components/SiteBackground";
 import PlayerDock from "@/components/player/PlayerDock";
+import DevSwitcherSlot from "@/components/player/DevSwitcherSlot";
 import Nav from "@/components/Nav";
 
 const inter = Inter({
@@ -47,6 +48,7 @@ export default function RootLayout({
             <Nav />
             <main id="main-content">{children}</main>
             <PlayerDock />
+            <DevSwitcherSlot />
           </PlayerProvider>
         </div>
       </body>
