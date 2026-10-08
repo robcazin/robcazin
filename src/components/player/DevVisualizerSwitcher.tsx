@@ -15,7 +15,10 @@ const FAVORITES_KEY = "robcazin-viz-favorites";
 
 const PORTED_IDS = [
   "spectrum-ribbon",
+  "phosphor-sweep",
+  "xy-dust",
   "phase-braid",
+  "terminal-trace",
   "contour-memory",
   "packet-stitch",
   "teletext-pulse",

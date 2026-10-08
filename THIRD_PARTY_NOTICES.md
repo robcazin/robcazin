@@ -7,7 +7,10 @@ This project includes code from third-party sources under the following licenses
 Visualizers ported from the [iwrzwr-visual-archive](https://github.com/kaganin/iwrzwr-visual-archive) project by Kagan Yaldizkaya:
 
 - Spectrum Ribbon
+- Phosphor Sweep
+- XY Dust
 - Phase Braid
+- Terminal Trace
 - Contour Memory
 - Packet Stitch
 - Teletext Pulse

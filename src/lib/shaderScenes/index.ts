@@ -14,6 +14,7 @@ import * as audioMatrix from "./audio-matrix";
 import * as audioRipples from "./audio-ripples";
 import * as audioVortex from "./audio-vortex";
 import * as audioWaves from "./audio-waves";
+import * as xyDust from "./xy-dust";
 import * as bassVortex from "./bass-vortex";
 import * as contourMemory from "./contour-memory";
 import * as cosmicStorm from "./cosmic-storm";
@@ -26,6 +27,7 @@ import * as neonGrid from "./neon-grid";
 import * as packetStitch from "./packet-stitch";
 import * as perforationLogic from "./perforation-logic";
 import * as phaseBraid from "./phase-braid";
+import * as phosphorSweep from "./phosphor-sweep";
 import * as rainyDays from "./rainy-days";
 import * as rankSieve from "./rank-sieve";
 import * as raveLasers from "./rave-lasers";
@@ -33,6 +35,7 @@ import * as sacredGeometry from "./sacred-geometry";
 import * as shaytanRevived from "./shaytan-revived";
 import * as spectrumRibbon from "./spectrum-ribbon";
 import * as teletextPulse from "./teletext-pulse";
+import * as terminalTrace from "./terminal-trace";
 import * as transcodeWindow from "./transcode-window";
 
 export interface ShaderScene {
@@ -61,7 +64,10 @@ const scenes = [
   raveLasers,
   // iwrzwr-visual-archive ports
   spectrumRibbon,
+  phosphorSweep,
+  xyDust,
   phaseBraid,
+  terminalTrace,
   contourMemory,
   packetStitch,
   teletextPulse,
