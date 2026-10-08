@@ -13,6 +13,8 @@ export const id = "packet-stitch" as const;
 export const name = 'Packet Stitch';
 
 export const fragmentShader = `
+  precision highp float;
+  
   uniform float time;
   uniform float audioLow;
   uniform float audioMid;
@@ -45,7 +47,6 @@ export const fragmentShader = `
     
     // Read head position
     float headX = 0.45;
-    float headGlow = smoothstep(0.06, 0.0, abs(uv.x - headX));
     
     vec3 color = vec3(0.0);
     
@@ -60,12 +61,18 @@ export const fragmentShader = `
       
       // Audio-reactive packet size
       float sizeVariant = hash(index + 23.0);
-      float audioInfluence = 0.0;
       
       // Assign different frequency bands to different packets
-      if(mod(index, 3.0) < 1.0) audioInfluence = audioLow;
-      else if(mod(index, 3.0) < 2.0) audioInfluence = audioMid;
-      else audioInfluence = audioHigh;
+      // Cache mod result to avoid recomputation
+      float indexMod3 = mod(index, 3.0);
+      float audioInfluence;
+      if(indexMod3 < 1.0) {
+        audioInfluence = audioLow;
+      } else if(indexMod3 < 2.0) {
+        audioInfluence = audioMid;
+      } else {
+        audioInfluence = audioHigh;
+      }
       
       float width = 0.04 + (sizeVariant * 0.03 + audioInfluence * 0.03);
       float height = 0.08 + (sizeVariant * 0.05 + audioInfluence * 0.06);
@@ -76,17 +83,21 @@ export const fragmentShader = `
       float boxEdge = smoothstep(0.003, 0.0, boxD) - smoothstep(0.001, 0.0, boxD - 0.001);
       
       // Active when passing under read head
-      bool active = abs(x - headX) < width * 1.5;
-      vec3 boxColor = active ? accentColor : baseColor;
-      float boxAlpha = active ? 0.85 : 0.45;
+      float isActive = step(abs(x - headX), width * 1.5);
+      vec3 boxColor = mix(baseColor, accentColor, isActive);
+      float boxAlpha = mix(0.45, 0.85, isActive);
       
       color += boxColor * box * boxAlpha;
       color += boxColor * boxEdge * 0.3;
       
-      // Internal pattern
-      float patternDist = mod((uv.x - x + 0.5) * 40.0, 4.0);
-      if(patternDist < 1.0 && abs(uv.x - x) < width && abs(uv.y - 0.5) < height) {
-        color += baseColor * 0.15 * (0.3 + hash(index + patternDist) * 0.6);
+      // Internal pattern - only draw if inside the box
+      float xDist = abs(uv.x - x);
+      float yDist = abs(uv.y - 0.5);
+      if(xDist < width && yDist < height) {
+        float patternDist = mod(abs(uv.x - x) * 40.0, 4.0);
+        if(patternDist < 1.0) {
+          color += baseColor * 0.15 * (0.3 + hash(index + patternDist) * 0.6);
+        }
       }
     }
     
@@ -95,7 +106,7 @@ export const fragmentShader = `
     color += accentColor * headLine * 0.6;
     
     // Read head dot
-    float headDot = smoothstep(0.008, 0.004, length(uv - vec2(headX, 0.5 - 0.15)));
+    float headDot = smoothstep(0.008, 0.004, length(uv - vec2(headX, 0.35)));
     color += accentColor * headDot;
     
     gl_FragColor = vec4(color, 1.0);
