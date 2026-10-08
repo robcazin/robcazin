@@ -87,6 +87,32 @@
         "visualizer": "teletext-pulse",
         "visualizerColor": "#6B9B8A"
       }
+    },
+    {
+      "id": "film-music-peking-to-paris",
+      "title": "Peking to Paris",
+      "kind": "audio",
+      "src": "/audio/film-music/peking-to-paris.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "abyssal-fractals",
+        "visualizerColor": "#7A6A58",
+        "radialViz": {
+          "trailFadeSeconds": 11,
+          "rotationSpeed": 0.005,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 10,
+          "sparkThreshold": 0.12,
+          "burstSpeed": 50,
+          "burstCount": 10,
+          "ambientDriftRate": 4
+        }
+      }
     }
   ]
 }
