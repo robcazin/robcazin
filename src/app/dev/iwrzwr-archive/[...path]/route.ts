@@ -78,6 +78,13 @@ const AUDIO_BRIDGE = `<script>
       return nearest(age, "high");
     },
     eventAt: function (kind) {
+      var tempo = window.__iwrTempo;
+      var subdiv = window.__iwrStepSubdiv || 1;
+      if (tempo && tempo.bpm > 1) {
+        var local = tempo.beat * subdiv;
+        var span = 60 / tempo.bpm / subdiv;
+        return { n: Math.floor(local), age: (local - Math.floor(local)) * span };
+      }
       var age = state[kind + "Age"];
       return { n: Math.floor(state.beat), age: typeof age === "number" ? age : 30 };
     }
@@ -123,6 +130,17 @@ const AUDIO_BRIDGE = `<script>
     state.beat = data.beat || 0;
     state.songTime = data.songTime || 0;
     state.loopTime = data.songTime || 0;
+    var tempoNow = window.__iwrTempo;
+    if (tempoNow && tempoNow.bpm > 1) {
+      var subdivNow = window.__iwrStepSubdiv || 1;
+      var localNow = tempoNow.beat * subdivNow;
+      var since = (localNow - Math.floor(localNow)) * (60 / tempoNow.bpm / subdivNow);
+      state.beat = localNow;
+      state.kickAge = since;
+      state.snareAge = since;
+      state.hatAge = since;
+      state.noteAge = since;
+    }
     history.push({
       t: performance.now() / 1000,
       level: state.level, hit: state.hit,
@@ -300,6 +318,84 @@ const PREVIEW_FIT = `<script>
 })();
 </script>`;
 
+/**
+ * Animation seconds per mechanism step. `sub` is how many of those steps
+ * fall on one musical beat (eighth notes when 2). Styles omitted here keep
+ * their own integrator: their motion is continuous, or it uses two clocks
+ * that cannot share one beat.
+ */
+const MACHINE_STEPS: Record<string, Record<string, { sec: string; sub?: number }>> = {
+  "studies/night-01-raster-protocol.html": {
+    register: { sec: "1/3.6", sub: 2 },
+    packets: { sec: "35/27", sub: 2 },
+    parity: { sec: "1/3" },
+  },
+  "studies/night-02-causal-instruments.html": {
+    relay: { sec: "1/1.36" },
+    boxes: { sec: "1/2.2" },
+    branch: { sec: "1/0.62" },
+  },
+  "studies/night-03-pocket-machines.html": {
+    relay: { sec: "1/4" },
+    hold: { sec: "1/2.7" },
+  },
+  "studies/night-05-plotter-logic.html": {
+    broken: { sec: "1/0.19" },
+    weave: { sec: "1/3" },
+    courier: { sec: "1/5" },
+    factors: { sec: "1/1.6" },
+    fragments: { sec: "1/0.85" },
+  },
+  "studies/night-06-selective-memory.html": {
+    exchange: { sec: "state.mode==='play'?0.8:1.04" },
+    press: { sec: "0.92" },
+    seal: { sec: "0.62" },
+  },
+  "studies/night-07-signal-translations.html": {
+    perforation: { sec: "1/2.2" },
+    transcode: { sec: "0.24", sub: 2 },
+    loom: { sec: "1/0.9" },
+  },
+  "studies/night-08-quiet-telemetry.html": {
+    skew: { sec: "1/3.4" },
+    shear: { sec: "1/2.5" },
+  },
+  "studies/night-09-control-laws.html": {
+    handoff: { sec: "0.6" },
+    lease: { sec: "0.9" },
+  },
+  "studies/night-10-field-operations.html": {
+    atlas: { sec: "1/0.8" },
+    slots: { sec: "1/2.2" },
+  },
+  "studies/night-11-shared-resources.html": {
+    routing: { sec: "0.76" },
+  },
+  "studies/night-12-inference-engines.html": {
+    ricochet: { sec: "1/0.55" },
+  },
+  "studies/night-13-conditional-machines.html": {
+    confidence: { sec: "0.8" },
+    closure: { sec: "1.2" },
+    escapement: { sec: "0.52" },
+  },
+};
+
+const NIGHT_INTEGRATOR = "else t+=Math.min(elapsed/1000,.07)*conduct();";
+
+function machineClock(rel: string, html: string): string {
+  const table = MACHINE_STEPS[rel];
+  if (!table || !html.includes(NIGHT_INTEGRATOR)) return html;
+  const entries = Object.entries(table)
+    .map(([style, step]) => `${style}:{sec:${step.sec}${step.sub ? `,sub:${step.sub}` : ""}}`)
+    .join(",");
+  const replacement =
+    `else{var __step={${entries}}[state.style];var __tempo=window.__iwrTempo;` +
+    `if(__step&&__tempo&&__tempo.bpm>1){window.__iwrStepSubdiv=__step.sub||1;t=__tempo.beat*window.__iwrStepSubdiv*__step.sec+1e-8;}` +
+    `else{window.__iwrStepSubdiv=1;t+=Math.min(elapsed/1000,.07)*conduct();}}`;
+  return html.replace(NIGHT_INTEGRATOR, replacement);
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
@@ -362,9 +458,10 @@ export async function GET(
       if (rel.endsWith("sound-machines.html")) {
         html = html.replace(
           "time+=dt;recordTime+=dt;",
-          "var tempo=window.__iwrTempo;if(tempo&&tempo.bpm>1){var stepped=Math.floor(tempo.beat*2)/2;if(state.style==='sand')time=stepped*1.8;else if(state.style==='motor')time=stepped/1.5;else if(state.style==='pendulum')time=stepped*0.5;else if(state.style==='grains')time=stepped*(35/16);else time+=dt;}else time+=dt;recordTime+=dt;"
+          "var tempo=window.__iwrTempo;if(tempo&&tempo.bpm>1){var stepped=Math.floor(tempo.beat*2)/2;if(state.style==='sand')time=stepped*1.8;else if(state.style==='motor')time=stepped/1.5;else if(state.style==='spring')time=stepped/1.6;else if(state.style==='pendulum')time=stepped*0.5;else if(state.style==='grains')time=stepped*(35/16);else time+=dt;}else time+=dt;recordTime+=dt;"
         );
       }
+      html = machineClock(rel, html);
       if (html.includes("</body>")) {
         html = html.replace("</body>", PREVIEW_FIT + "</body>");
       }
