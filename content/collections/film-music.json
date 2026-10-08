@@ -81,25 +81,11 @@
       "title": "Heal",
       "kind": "audio",
       "src": "/audio/film-music/heal.m4a",
-      "notes": "Placeholder notes — refine credits and description.",
+      "notes": "Cinematic underscore. Visualizer: Teletext Pulse — blocky, pulsing cells that expand from the center in muted tones, creating a calm, rhythmic display.",
       "meta": {
         "format": "m4a",
-        "visualizer": "audio-ripples",
-        "visualizerColor": "#6B9B8A",
-        "radialViz": {
-          "trailFadeSeconds": 10,
-          "rotationSpeed": 0.006,
-          "lineWidth": 0.4,
-          "bands": 72
-        },
-        "particleViz": {
-          "counterRing": false,
-          "maxSparksPerFrame": 4,
-          "sparkThreshold": 0.22,
-          "burstSpeed": 40,
-          "burstCount": 6,
-          "ambientDriftRate": 2
-        }
+        "visualizer": "teletext-pulse",
+        "visualizerColor": "#6B9B8A"
       }
     }
   ]

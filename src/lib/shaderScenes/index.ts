@@ -2,6 +2,10 @@
  * Audio-reactive GLSL scenes vendored from
  * https://github.com/TjardoOrtan/audio-reactive-shaders (no license file).
  *
+ * Includes visualizers ported from iwrzwr-visual-archive by Kagan Yaldizkaya
+ * (MIT License, Copyright 2026 Kagan Yaldizkaya)
+ * https://github.com/kaganin/iwrzwr-visual-archive
+ *
  * Preview in dev: ?viz=<id>
  */
 
@@ -11,15 +15,20 @@ import * as audioRipples from "./audio-ripples";
 import * as audioVortex from "./audio-vortex";
 import * as audioWaves from "./audio-waves";
 import * as bassVortex from "./bass-vortex";
+import * as contourMemory from "./contour-memory";
 import * as cosmicStorm from "./cosmic-storm";
 import * as fractalSphere from "./fractal-sphere";
 import * as gyroidPulse from "./gyroid-pulse";
 import * as kaleidoscope from "./kaleidoscope";
 import * as neonGrid from "./neon-grid";
+import * as packetStitch from "./packet-stitch";
+import * as phaseBraid from "./phase-braid";
 import * as rainyDays from "./rainy-days";
 import * as raveLasers from "./rave-lasers";
 import * as sacredGeometry from "./sacred-geometry";
 import * as shaytanRevived from "./shaytan-revived";
+import * as spectrumRibbon from "./spectrum-ribbon";
+import * as teletextPulse from "./teletext-pulse";
 
 export interface ShaderScene {
   id: ShaderSceneId;
@@ -43,6 +52,12 @@ const scenes = [
   audioWaves,
   audioVortex,
   raveLasers,
+  // iwrzwr-visual-archive ports
+  spectrumRibbon,
+  phaseBraid,
+  contourMemory,
+  packetStitch,
+  teletextPulse,
 ] as const;
 
 export type ShaderSceneId = (typeof scenes)[number]["id"];
