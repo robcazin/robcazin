@@ -1056,8 +1056,17 @@ function PanelVisualizer({
   const sceneId: ShaderSceneId = isShaderSceneId(mode)
     ? mode
     : DEFAULT_SHADER_SCENE;
+  const palette =
+    (typeof trackMeta?.visualizerColor === "string" && trackMeta.visualizerColor) ||
+    (typeof trackAccent === "string" && trackAccent.length > 0 && trackAccent) ||
+    null;
   return (
-    <ShaderVisualizer sceneId={sceneId} className={className} height={height} />
+    <ShaderVisualizer
+      sceneId={sceneId}
+      className={className}
+      height={height}
+      accent={palette}
+    />
   );
 }
 

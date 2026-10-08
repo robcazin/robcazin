@@ -4,13 +4,18 @@ This project includes code from third-party sources under the following licenses
 
 ## iwrzwr-visual-archive
 
-Five visualizers ported from the [iwrzwr-visual-archive](https://github.com/kaganin/iwrzwr-visual-archive) project by Kagan Yaldizkaya:
+Visualizers ported from the [iwrzwr-visual-archive](https://github.com/kaganin/iwrzwr-visual-archive) project by Kagan Yaldizkaya:
 
 - Spectrum Ribbon
 - Phase Braid
 - Contour Memory
 - Packet Stitch
 - Teletext Pulse
+- Transcode Window
+- Perforation Logic
+- Rank Sieve
+- Factor Constellation
+- Gate Register
 
 **Original work:** https://github.com/kaganin/iwrzwr-visual-archive  
 **Live demo:** https://www.kagan.in/iwrzwr/visual-archive/  

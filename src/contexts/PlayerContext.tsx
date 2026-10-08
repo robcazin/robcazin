@@ -10,6 +10,7 @@ import React, {
 } from "react";
 import { usePathname } from "next/navigation";
 import type { Track, Collection } from "@/lib/types";
+import { analyzeTrackTempo, setCatalogTempo, setDetectedTempo } from "@/lib/tempoClock";
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
 
@@ -31,6 +32,9 @@ export interface PlayerContextValue {
   // Audio nodes (exposed for Visualizer)
   analyserNode: AnalyserNode | null;
   audioContext: AudioContext | null;
+
+  /** Audio element time, including while paused. Visualizers lock tempo to this. */
+  getPlaybackTime: () => number;
 
   // Actions
   playTrack: (track: Track, collection: Collection) => void;
@@ -57,6 +61,12 @@ export function usePlayer() {
 /* ─── Provider ────────────────────────────────────────────────────────────── */
 
 const VOLUME_KEY = "rc_volume";
+
+function asTempoNumber(value: unknown, min: number, max: number): number | null {
+  const n = typeof value === "number" ? value : typeof value === "string" ? Number(value) : NaN;
+  if (!Number.isFinite(n) || n < min || n > max) return null;
+  return n;
+}
 
 function describeMediaError(audio: HTMLAudioElement, src: string): string {
   const err = audio.error;
@@ -382,6 +392,32 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("keydown", handler);
   }, [togglePlay, seekSeconds, setVolume, volume]);
 
+  const getPlaybackTime = useCallback(
+    () => audioRef.current?.currentTime ?? 0,
+    []
+  );
+
+  useEffect(() => {
+    const meta = currentTrack?.meta;
+    const catalogBpm = asTempoNumber(meta?.bpm, 40, 240);
+    const catalogOffset = asTempoNumber(meta?.beatOffset, 0, 120);
+    setCatalogTempo(catalogBpm, catalogOffset);
+    setDetectedTempo(null, null);
+    if (!currentTrack || currentTrack.kind !== "audio" || !currentTrack.src) return;
+    let cancelled = false;
+    void analyzeTrackTempo(currentTrack.src, catalogBpm)
+      .then((found) => {
+        if (cancelled || !found) return;
+        setDetectedTempo(found.bpm > 0 ? found.bpm : null, found.offset);
+      })
+      .catch(() => {
+        if (!cancelled) setDetectedTempo(null, null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [currentTrack]);
+
   /* ─── Context value ───────────────────────────────────────────────────── */
   const progress =
     duration > 0 ? Math.min(1, currentTime / duration) : 0;
@@ -399,6 +435,7 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     playbackError,
     analyserNode,
     audioContext,
+    getPlaybackTime,
     playTrack,
     togglePlay,
     seek,

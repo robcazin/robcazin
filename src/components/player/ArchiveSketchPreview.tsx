@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { usePlayer } from "@/contexts/PlayerContext";
+import { sampleTempo } from "@/lib/tempoClock";
 
 interface ArchiveSketchPreviewProps {
   sketchId: string;
@@ -72,15 +73,17 @@ export default function ArchiveSketchPreview({
   height = "fill",
 }: ArchiveSketchPreviewProps) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const { analyserNode, status } = usePlayer();
+  const { analyserNode, status, getPlaybackTime } = usePlayer();
   const analyserRef = useRef(analyserNode);
   const statusRef = useRef(status);
+  const playbackRef = useRef(getPlaybackTime);
   const src = useMemo(() => sketchSrc(sketchId), [sketchId]);
 
   useEffect(() => {
     analyserRef.current = analyserNode;
     statusRef.current = status;
-  }, [analyserNode, status]);
+    playbackRef.current = getPlaybackTime;
+  }, [analyserNode, status, getPlaybackTime]);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -150,7 +153,22 @@ export default function ArchiveSketchPreview({
 
       const frame = iframe.contentWindow;
       if (!frame) return;
+      const tempo = sampleTempo(playbackRef.current());
       try {
+        frame.postMessage(
+          {
+            type: "iwr-tempo",
+            bpm: tempo.bpm,
+            beat: tempo.beat,
+            phase: tempo.phase,
+            bar: tempo.bar,
+            barPhase: tempo.barPhase,
+            eighth: tempo.eighth,
+            sixteenth: tempo.sixteenth,
+            known: tempo.known,
+          },
+          window.location.origin
+        );
         frame.postMessage(
           {
             type: "iwr-audio",

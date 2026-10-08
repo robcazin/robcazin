@@ -17,23 +17,30 @@ import * as audioWaves from "./audio-waves";
 import * as bassVortex from "./bass-vortex";
 import * as contourMemory from "./contour-memory";
 import * as cosmicStorm from "./cosmic-storm";
+import * as factorConstellation from "./factor-constellation";
 import * as fractalSphere from "./fractal-sphere";
+import * as gateRegister from "./gate-register";
 import * as gyroidPulse from "./gyroid-pulse";
 import * as kaleidoscope from "./kaleidoscope";
 import * as neonGrid from "./neon-grid";
 import * as packetStitch from "./packet-stitch";
+import * as perforationLogic from "./perforation-logic";
 import * as phaseBraid from "./phase-braid";
 import * as rainyDays from "./rainy-days";
+import * as rankSieve from "./rank-sieve";
 import * as raveLasers from "./rave-lasers";
 import * as sacredGeometry from "./sacred-geometry";
 import * as shaytanRevived from "./shaytan-revived";
 import * as spectrumRibbon from "./spectrum-ribbon";
 import * as teletextPulse from "./teletext-pulse";
+import * as transcodeWindow from "./transcode-window";
 
 export interface ShaderScene {
   id: ShaderSceneId;
   name: string;
   fragmentShader: string;
+  /** Design width/height. The quad is contained and centered at this ratio. */
+  frameAspect?: number;
 }
 
 const scenes = [
@@ -58,6 +65,11 @@ const scenes = [
   contourMemory,
   packetStitch,
   teletextPulse,
+  transcodeWindow,
+  perforationLogic,
+  rankSieve,
+  factorConstellation,
+  gateRegister,
 ] as const;
 
 export type ShaderSceneId = (typeof scenes)[number]["id"];

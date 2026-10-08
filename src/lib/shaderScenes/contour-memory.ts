@@ -8,11 +8,16 @@
  * Muted palette adaptation for robcazin.com
  */
 
+import { STRIP_FRAME_ASPECT } from "./iwrCommon";
+
 export const id = "contour-memory" as const;
 
 export const name = 'Contour Memory';
 
+export const frameAspect = STRIP_FRAME_ASPECT;
+
 export const fragmentShader = `
+  precision highp float;
   uniform float time;
   uniform float audioLow;
   uniform float audioMid;

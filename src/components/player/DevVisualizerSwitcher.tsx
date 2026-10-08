@@ -1,8 +1,15 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { usePlayer } from "@/contexts/PlayerContext";
 import { VISUALIZER_LIBRARY } from "@/lib/visualizerPresets";
+import {
+  readTempoState,
+  sampleTempo,
+  setTempoOverride,
+  subscribeTempo,
+} from "@/lib/tempoClock";
 
 const FAVORITES_KEY = "robcazin-viz-favorites";
 
@@ -12,6 +19,11 @@ const PORTED_IDS = [
   "contour-memory",
   "packet-stitch",
   "teletext-pulse",
+  "transcode-window",
+  "perforation-logic",
+  "rank-sieve",
+  "factor-constellation",
+  "gate-register",
 ] as const;
 
 interface ArchiveSketch {
@@ -52,6 +64,10 @@ function DevVisualizerSwitcherInner() {
   const [favorites, setFavorites] = useState<string[]>(readFavorites);
   const [copied, setCopied] = useState(false);
   const currentViz = searchParams.get("viz");
+  const { getPlaybackTime } = usePlayer();
+  const [tempoText, setTempoText] = useState("—");
+  const [bpmDraft, setBpmDraft] = useState("");
+  const tapsRef = useRef<number[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -72,6 +88,29 @@ function DevVisualizerSwitcherInner() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    return subscribeTempo(() => {
+      const resolved = readTempoState();
+      const live = sampleTempo(getPlaybackTime());
+      if (!live.known) {
+        setTempoText("tempo —");
+        return;
+      }
+      const label =
+        resolved.source === "override"
+          ? "tap"
+          : resolved.source === "catalog"
+            ? "catalog"
+            : "detected";
+      const heard =
+        resolved.detectedBpm &&
+        Math.abs(resolved.detectedBpm - live.bpm) > 1
+          ? ` · heard ${Math.round(resolved.detectedBpm)}`
+          : "";
+      setTempoText(`${Math.round(live.bpm)} BPM · ${label}${heard}`);
+    });
+  }, [getPlaybackTime]);
 
   const menu = useMemo(() => {
     const ported: MenuEntry[] = PORTED_IDS.map((id) => {
@@ -155,6 +194,27 @@ function DevVisualizerSwitcherInner() {
     });
   };
 
+  const applyDraftBpm = () => {
+    const bpm = Number(bpmDraft);
+    if (!Number.isFinite(bpm) || bpm < 40 || bpm > 240) return;
+    setTempoOverride(bpm, getPlaybackTime());
+  };
+
+  const tapTempo = () => {
+    const now = performance.now();
+    const taps = tapsRef.current.filter((stamp) => now - stamp < 2500);
+    taps.push(now);
+    tapsRef.current = taps;
+    if (taps.length < 2) return;
+    const recent = taps.slice(-6);
+    let sum = 0;
+    for (let i = 1; i < recent.length; i++) sum += recent[i] - recent[i - 1];
+    const bpm = Math.round(60000 / (sum / (recent.length - 1)));
+    if (bpm < 40 || bpm > 240) return;
+    setBpmDraft(String(bpm));
+    setTempoOverride(bpm, getPlaybackTime());
+  };
+
   const copyFavorites = async () => {
     const lines = favorites.map((id) => {
       const entry = menu.find((item) => item.id === id);
@@ -229,6 +289,46 @@ function DevVisualizerSwitcherInner() {
           </optgroup>
         ))}
       </select>
+
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <div className="font-mono text-xs text-white/70">{tempoText}</div>
+        <input
+          value={bpmDraft}
+          onChange={(event) => setBpmDraft(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") applyDraftBpm();
+          }}
+          inputMode="decimal"
+          aria-label="BPM override"
+          placeholder="BPM"
+          className="w-16 rounded border border-white/20 bg-white/10 px-2 py-1 text-xs text-white"
+        />
+        <button
+          type="button"
+          onClick={applyDraftBpm}
+          className="rounded border border-white/20 px-2 py-1 text-xs text-white/80 hover:text-white"
+        >
+          Set
+        </button>
+        <button
+          type="button"
+          onClick={tapTempo}
+          className="rounded border border-white/20 px-2 py-1 text-xs text-white/80 hover:text-white"
+        >
+          Tap
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            tapsRef.current = [];
+            setBpmDraft("");
+            setTempoOverride(null);
+          }}
+          className="rounded border border-white/20 px-2 py-1 text-xs text-white/80 hover:text-white"
+        >
+          Clear
+        </button>
+      </div>
 
       <div className="mt-3 flex gap-2">
         <button

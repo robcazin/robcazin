@@ -130,6 +130,12 @@ const AUDIO_BRIDGE = `<script>
     });
     if (history.length > 200) history.shift();
   });
+  window.__iwrTempo = { bpm: 0, beat: 0, phase: 0, bar: 0, barPhase: 0 };
+  window.addEventListener("message", function (event) {
+    var data = event.data;
+    if (!data || data.type !== "iwr-tempo") return;
+    window.__iwrTempo = data;
+  });
   window.addEventListener("message", function (event) {
     var data = event.data;
     if (!data || data.type !== "iwr-dispose") return;
@@ -148,6 +154,10 @@ const AUDIO_BRIDGE = `<script>
  * not run, so the bitmap stays stale. This sizes the visible canvas from the
  * iframe viewport and pokes the sketch's own resize on zoom.
  * Square studies paint a fixed 1080 buffer; only their CSS box tracks the iframe.
+ * Strip studies are authored at 226×44. The canvas keeps that layout size so
+ * the sketch does not redraw a wider composition, then a uniform scale fits
+ * it in the iframe. getBoundingClientRect is patched because CSS scale would
+ * otherwise report the enlarged box and the sketch would stretch.
  */
 const PREVIEW_FIT = `<script>
 (function () {
@@ -179,10 +189,33 @@ const PREVIEW_FIT = `<script>
     if (square) return [square];
     return [].slice.call(document.querySelectorAll("canvas, svg")).filter(collapsed);
   }
+  var STRIP_W = 226, STRIP_H = 44, ROUND = 200;
+  function designOf(node) {
+    if (document.body.hasAttribute("data-round-art") || node.tagName === "svg" || node.tagName === "SVG") {
+      return { w: ROUND, h: ROUND };
+    }
+    return { w: STRIP_W, h: STRIP_H };
+  }
+  function lockMeasure(node, cssW, cssH) {
+    node.__iwrBox = { w: cssW, h: cssH };
+    if (node.__iwrLocked) return;
+    node.__iwrLocked = true;
+    node.getBoundingClientRect = function () {
+      var b = node.__iwrBox;
+      return {
+        x: 0, y: 0, left: 0, top: 0, right: b.w, bottom: b.h,
+        width: b.w, height: b.h, toJSON: function () { return this; }
+      };
+    };
+  }
   function place(node, view) {
     var square = node.closest && node.closest(".composition-square");
     if (square) {
       var side = Math.max(1, Math.min(view.w, view.h));
+      square.style.setProperty("position", "fixed", "important");
+      square.style.setProperty("left", "50%", "important");
+      square.style.setProperty("top", "50%", "important");
+      square.style.setProperty("transform", "translate(-50%, -50%)", "important");
       square.style.setProperty("width", side + "px", "important");
       square.style.setProperty("height", side + "px", "important");
       square.style.setProperty("max-width", "none", "important");
@@ -191,18 +224,21 @@ const PREVIEW_FIT = `<script>
       return side;
     }
     if (collapsed(node) && node.parentNode !== document.body) document.body.appendChild(node);
-    var band = Math.max(1, Math.min(44, view.h));
-    var width = view.w > 64 ? view.w - 48 : view.w;
+    var design = designOf(node);
+    var scale = Math.min(view.w / design.w, view.h / design.h);
+    if (!isFinite(scale) || scale <= 0) scale = 1;
     node.style.setProperty("display", "block", "important");
     node.style.setProperty("position", "fixed", "important");
-    node.style.setProperty("left", (view.w > 64 ? 24 : 0) + "px", "important");
+    node.style.setProperty("left", "50%", "important");
     node.style.setProperty("top", "50%", "important");
-    node.style.setProperty("transform", "translateY(-50%)", "important");
-    node.style.setProperty("width", Math.max(1, width) + "px", "important");
-    node.style.setProperty("height", band + "px", "important");
+    node.style.setProperty("width", design.w + "px", "important");
+    node.style.setProperty("height", design.h + "px", "important");
     node.style.setProperty("max-width", "none", "important");
     node.style.setProperty("max-height", "none", "important");
-    return Math.max(1, width);
+    node.style.setProperty("transform-origin", "center center", "important");
+    node.style.setProperty("transform", "translate(-50%, -50%) scale(" + scale + ")", "important");
+    lockMeasure(node, design.w, design.h);
+    return design.w;
   }
   var restoreTimer = 0;
   function poke(node, cssWidth) {
@@ -321,6 +357,12 @@ export async function GET(
         html = html.replace(
           "</body>",
           '<script src="../isolate.js"></script></body>'
+        );
+      }
+      if (rel.endsWith("sound-machines.html")) {
+        html = html.replace(
+          "time+=dt;recordTime+=dt;",
+          "var tempo=window.__iwrTempo;if(tempo&&tempo.bpm>1){var stepped=Math.floor(tempo.beat*2)/2;if(state.style==='sand')time=stepped*1.8;else if(state.style==='motor')time=stepped/1.5;else if(state.style==='pendulum')time=stepped*0.5;else if(state.style==='grains')time=stepped*(35/16);else time+=dt;}else time+=dt;recordTime+=dt;"
         );
       }
       if (html.includes("</body>")) {
