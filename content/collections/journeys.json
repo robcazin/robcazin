@@ -317,6 +317,32 @@
           "ambientDriftRate": 6
         }
       }
+    },
+    {
+      "id": "journeys-home",
+      "title": "Home",
+      "kind": "audio",
+      "src": "/audio/journeys/home.m4a",
+      "notes": "Placeholder notes — refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "abyssal-fractals",
+        "visualizerColor": "#5E6E68",
+        "radialViz": {
+          "trailFadeSeconds": 11,
+          "rotationSpeed": 0.004,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 12,
+          "sparkThreshold": 0.12,
+          "burstSpeed": 50,
+          "burstCount": 10,
+          "ambientDriftRate": 5
+        }
+      }
     }
   ]
 }

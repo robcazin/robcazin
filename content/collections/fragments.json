@@ -19,6 +19,58 @@
           "waveHeightRatio": 0.62
         }
       }
+    },
+    {
+      "id": "fragment-bob",
+      "title": "Bob",
+      "kind": "audio",
+      "src": "/audio/fragments/bob.m4a",
+      "notes": "Placeholder notes \u2014 refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "gyroid-pulse",
+        "visualizerColor": "#5C6B78",
+        "radialViz": {
+          "trailFadeSeconds": 11,
+          "rotationSpeed": 0.005,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 10,
+          "sparkThreshold": 0.12,
+          "burstSpeed": 50,
+          "burstCount": 10,
+          "ambientDriftRate": 5
+        }
+      }
+    },
+    {
+      "id": "fragment-koala-dream",
+      "title": "KOala Dream",
+      "kind": "audio",
+      "src": "/audio/fragments/koala-dream.m4a",
+      "notes": "Placeholder notes \u2014 refine credits and description.",
+      "meta": {
+        "format": "m4a",
+        "visualizer": "gyroid-pulse",
+        "visualizerColor": "#6B7A62",
+        "radialViz": {
+          "trailFadeSeconds": 11,
+          "rotationSpeed": 0.004,
+          "lineWidth": 0.4,
+          "bands": 72
+        },
+        "particleViz": {
+          "counterRing": false,
+          "maxSparksPerFrame": 8,
+          "sparkThreshold": 0.12,
+          "burstSpeed": 50,
+          "burstCount": 10,
+          "ambientDriftRate": 6
+        }
+      }
     }
   ]
 }
