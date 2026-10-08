@@ -9,6 +9,19 @@ interface ArchiveSketchPreviewProps {
   height?: number | "fill";
 }
 
+/**
+ * Square studies paint a full frame and do not ship isolate.js.
+ * `?item` makes motion-runtime hide the body until an isolator removes the guard,
+ * so these pages are loaded without that query.
+ */
+const FULL_BLEED = new Set([
+  "signal-assembly.html",
+  "phase-mechanics.html",
+  "orbital-memory.html",
+  "square-signal-assembly.html",
+  "square-signal-assembly-slow.html",
+]);
+
 /** `iwr:<study file>:<item index>` */
 function sketchSrc(sketchId: string): string | null {
   if (!sketchId.startsWith("iwr:")) return null;
@@ -18,7 +31,9 @@ function sketchSrc(sketchId: string): string | null {
   const file = rest.slice(0, split);
   const item = rest.slice(split + 1);
   if (!file.endsWith(".html") || !/^\d+$/.test(item)) return null;
-  return `/dev/iwrzwr-archive/studies/${file}?item=${item}`;
+  const path = `/dev/iwrzwr-archive/studies/${file}`;
+  if (FULL_BLEED.has(file)) return path;
+  return `${path}?item=${item}`;
 }
 
 function bandAverage(bins: Uint8Array, start: number, end: number): number {
@@ -34,12 +49,29 @@ function bandAverage(bins: Uint8Array, start: number, end: number): number {
  * Dev-only iframe of one vendored archive sketch.
  * The study page is loaded only after this component mounts.
  */
+function disposeFrame(iframe: HTMLIFrameElement) {
+  const frame = iframe.contentWindow;
+  if (frame) {
+    try {
+      frame.postMessage(
+        { type: "archive-visibility", active: false },
+        window.location.origin
+      );
+      frame.postMessage({ type: "iwr-dispose" }, window.location.origin);
+    } catch {
+      // The document is already gone.
+    }
+  }
+  iframe.src = "about:blank";
+  iframe.remove();
+}
+
 export default function ArchiveSketchPreview({
   sketchId,
   className = "",
   height = "fill",
 }: ArchiveSketchPreviewProps) {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
   const { analyserNode, status } = usePlayer();
   const analyserRef = useRef(analyserNode);
   const statusRef = useRef(status);
@@ -51,6 +83,15 @@ export default function ArchiveSketchPreview({
   }, [analyserNode, status]);
 
   useEffect(() => {
+    const host = hostRef.current;
+    if (!host || !src) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.title = sketchId;
+    iframe.src = src;
+    iframe.className = "block h-full w-full border-0 bg-black";
+    host.replaceChildren(iframe);
+
     const freq = { current: null as Uint8Array | null };
     let env = 0;
     let kickAge = 30;
@@ -107,31 +148,65 @@ export default function ArchiveSketchPreview({
         env *= 0.9;
       }
 
-      const frame = iframeRef.current?.contentWindow;
+      const frame = iframe.contentWindow;
       if (!frame) return;
-      frame.postMessage(
-        {
-          type: "iwr-audio",
-          active: playing,
-          level,
-          hit,
-          low,
-          mid,
-          high,
-          kickAge,
-          snareAge,
-          hatAge,
-          noteAge,
-          beat,
-          songTime,
-        },
-        window.location.origin
-      );
+      try {
+        frame.postMessage(
+          {
+            type: "iwr-audio",
+            active: playing,
+            level,
+            hit,
+            low,
+            mid,
+            high,
+            kickAge,
+            snareAge,
+            hatAge,
+            noteAge,
+            beat,
+            songTime,
+          },
+          window.location.origin
+        );
+      } catch {
+        // Frame navigated away during disposal.
+      }
     };
 
+    const postViewport = () => {
+      const frame = iframe.contentWindow;
+      if (!frame) return;
+      const box = host.getBoundingClientRect();
+      try {
+        frame.postMessage(
+          {
+            type: "iwr-viewport",
+            width: box.width,
+            height: box.height,
+            dpr: window.devicePixelRatio || 1,
+          },
+          window.location.origin
+        );
+      } catch {
+        // Frame navigated away during disposal.
+      }
+    };
+    const viewportObserver = new ResizeObserver(postViewport);
+    viewportObserver.observe(host);
+    window.addEventListener("resize", postViewport);
+    window.visualViewport?.addEventListener("resize", postViewport);
+    iframe.addEventListener("load", postViewport);
+
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [src]);
+    return () => {
+      cancelAnimationFrame(raf);
+      viewportObserver.disconnect();
+      window.removeEventListener("resize", postViewport);
+      window.visualViewport?.removeEventListener("resize", postViewport);
+      disposeFrame(iframe);
+    };
+  }, [sketchId, src]);
 
   if (!src) {
     return (
@@ -142,12 +217,9 @@ export default function ArchiveSketchPreview({
   }
 
   return (
-    <iframe
-      key={src}
-      ref={iframeRef}
-      title={sketchId}
-      src={src}
-      className={`block border-0 bg-black ${className}`}
+    <div
+      ref={hostRef}
+      className={`bg-black ${className}`}
       style={{
         height: height === "fill" ? "100%" : `${height}px`,
         width: "100%",
