@@ -15,6 +15,10 @@ const FAVORITES_KEY = "robcazin-viz-favorites";
 
 const PORTED_IDS = [
   "spectrum-ribbon",
+  "mono-wave",
+  "silk-layers",
+  "liquid-wave",
+  "fine-spectrum",
   "phosphor-sweep",
   "xy-dust",
   "phase-braid",
@@ -22,6 +26,10 @@ const PORTED_IDS = [
   "contour-memory",
   "packet-stitch",
   "teletext-pulse",
+  "vector-scope",
+  "wireframe-echo",
+  "ascii-stream",
+  "spectral-tape",
   "transcode-window",
   "perforation-logic",
   "rank-sieve",

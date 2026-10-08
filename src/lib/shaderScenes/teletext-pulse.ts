@@ -1,100 +1,56 @@
 /**
  * Ported from iwrzwr-visual-archive by Kagan Yaldizkaya
- * Original: https://github.com/kaganin/iwrzwr-visual-archive
- * 
+ * Original: studies/geek-soundwaves.html — teletext()
+ * https://github.com/kaganin/iwrzwr-visual-archive
+ *
  * MIT License
  * Copyright (c) 2026 Kagan Yaldizkaya
- * 
- * Muted palette adaptation for robcazin.com
+ *
+ * Muted palette adaptation for robcazin.com.
+ * Center-out mosaic on a 7px pitch. Holds at the archive's 9 Hz of song time.
+ * Folding that onto quarter notes would coarsen the grid, so it is not beat-snapped.
  */
 
-import { STRIP_FRAME_ASPECT } from "./iwrCommon";
+import { IWR_PRELUDE, STRIP_FRAME_ASPECT } from "./iwrCommon";
 
 export const id = "teletext-pulse" as const;
-
-export const name = 'Teletext Pulse';
-
+export const name = "Teletext Pulse";
 export const frameAspect = STRIP_FRAME_ASPECT;
 
-export const fragmentShader = `
-  precision highp float;
-  uniform float time;
-  uniform float audioLow;
-  uniform float audioMid;
-  uniform float audioHigh;
-  varying vec2 vUv;
-  
-  // Soft monochrome palette
-  const vec3 cellColor = vec3(0.88, 0.89, 0.87);
-  const vec3 brightCell = vec3(0.94, 0.95, 0.93);
-  
-  float hash(vec2 p) {
-    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+export const fragmentShader = IWR_PRELUDE + `
+  float signal(float t) {
+    return 0.15 + 0.52 * pow(abs(sin(t * 1.65)), 4.0) + 0.26 * pow(abs(sin(t * 3.15 + 0.7)), 8.0);
   }
-  
+
+  float gainAt(float t) {
+    float live = 0.13 + 0.87 * audioMix();
+    return mix(signal(t), live, clamp(audioMix() * 6.0, 0.0, 1.0));
+  }
+
+  float audio(float t) {
+    return sin(t * 15.0) * 0.55 + sin(t * 24.3 + 0.8) * 0.28 + sin(t * 37.7) * 0.17;
+  }
+
   void main() {
-    vec2 uv = vUv;
-    
-    // Grid dimensions
-    float cols = 24.0;
-    float rows = 8.0;
-    
-    // Cell coordinates
-    vec2 cellId = floor(uv * vec2(cols, rows));
-    vec2 cellUv = fract(uv * vec2(cols, rows));
-    
-    // Horizontal position for wave propagation
-    float x = cellId.x / cols;
-    
-    // Time with calmer tick rate
-    float tick = floor(time * 4.0) / 4.0;
-    
-    // Audio sampling with spatial offset
-    float audioSample;
-    float columnPhase = x * 0.5;
-    
-    // Assign frequency bands across width
-    if(x < 0.33) {
-      audioSample = audioLow;
-    } else if(x < 0.66) {
-      audioSample = audioMid;
-    } else {
-      audioSample = audioHigh;
-    }
-    
-    // Calmer audio response
-    float level = 0.2 + audioSample * 0.5;
-    
-    // Center-out wave pattern
-    float centerDist = abs(cellId.y - 3.5);
-    float extent = level * 4.0;
-    
-    // Cell is lit if within extent
-    bool lit = centerDist < extent;
-    
-    // Edge cells are brighter
-    bool isFrontier = abs(centerDist - extent) < 1.0;
-    
-    // Cell rectangle with small gaps
-    vec2 cellSize = vec2(0.85, 0.75);
-    vec2 cellCenter = vec2(0.5);
-    vec2 d = abs(cellUv - cellCenter);
-    bool inCell = all(lessThan(d, cellSize * 0.5));
-    
-    vec3 color = vec3(0.0);
-    
-    if(lit && inCell) {
-      if(isFrontier) {
-        // Bright edge with subtle pulse
-        float pulse = 0.5 + 0.5 * sin(time * 2.0);
-        color = mix(brightCell, cellColor, pulse * 0.3);
-      } else {
-        // Dimmer interior cells
-        float fade = 0.45 + level * 0.25;
-        color = cellColor * fade;
-      }
-    }
-    
-    gl_FragColor = vec4(color, 1.0);
+    vec2 p = px();
+    float clockT = songSeconds();
+    float tick = floor(clockT * 9.0) / 9.0;
+    float gain = gainAt(clockT);
+    float cols = max(8.0, floor(DW / 7.0));
+    float pitch = DW / cols;
+    float c = clamp(floor(p.x / pitch), 0.0, cols - 1.0);
+    float r = clamp(floor((p.y - 3.0) / 4.75), 0.0, 7.0);
+    float x = c / max(cols - 1.0, 1.0);
+    float local = gain * (0.4 + 0.6 * abs(audio(tick + x * 0.6)));
+    float extent = max(1.0, floor(local * 4.0 + 0.5));
+    float d = abs(r - 3.5);
+    float lit = 1.0 - step(extent, d);
+    float frontier = step(extent - 1.0, d);
+    float alpha = mix(0.43 + 0.22 * local, 0.9, frontier);
+    vec2 origin = vec2(floor(c * pitch) + 1.0, 3.0 + r * 4.75);
+    vec2 size = vec2(max(2.0, floor(pitch) - 1.5), 4.0);
+    float cell = fillRect(p, origin, size) * lit;
+    vec3 ink = mix(paper, accent, frontier);
+    gl_FragColor = vec4(ink * cell * alpha, 1.0);
   }
 `;

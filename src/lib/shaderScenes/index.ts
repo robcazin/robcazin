@@ -18,11 +18,14 @@ import * as xyDust from "./xy-dust";
 import * as bassVortex from "./bass-vortex";
 import * as contourMemory from "./contour-memory";
 import * as cosmicStorm from "./cosmic-storm";
+import * as fineSpectrum from "./fine-spectrum";
 import * as factorConstellation from "./factor-constellation";
 import * as fractalSphere from "./fractal-sphere";
 import * as gateRegister from "./gate-register";
 import * as gyroidPulse from "./gyroid-pulse";
+import * as liquidWave from "./liquid-wave";
 import * as kaleidoscope from "./kaleidoscope";
+import * as monoWave from "./mono-wave";
 import * as neonGrid from "./neon-grid";
 import * as packetStitch from "./packet-stitch";
 import * as perforationLogic from "./perforation-logic";
@@ -31,11 +34,16 @@ import * as phosphorSweep from "./phosphor-sweep";
 import * as rainyDays from "./rainy-days";
 import * as rankSieve from "./rank-sieve";
 import * as raveLasers from "./rave-lasers";
+import * as silkLayers from "./silk-layers";
 import * as sacredGeometry from "./sacred-geometry";
+import * as spectralTape from "./spectral-tape";
 import * as shaytanRevived from "./shaytan-revived";
 import * as spectrumRibbon from "./spectrum-ribbon";
+import * as asciiStream from "./ascii-stream";
 import * as teletextPulse from "./teletext-pulse";
 import * as terminalTrace from "./terminal-trace";
+import * as vectorScope from "./vector-scope";
+import * as wireframeEcho from "./wireframe-echo";
 import * as transcodeWindow from "./transcode-window";
 
 export interface ShaderScene {
@@ -64,6 +72,10 @@ const scenes = [
   raveLasers,
   // iwrzwr-visual-archive ports
   spectrumRibbon,
+  monoWave,
+  silkLayers,
+  liquidWave,
+  fineSpectrum,
   phosphorSweep,
   xyDust,
   phaseBraid,
@@ -71,6 +83,10 @@ const scenes = [
   contourMemory,
   packetStitch,
   teletextPulse,
+  vectorScope,
+  wireframeEcho,
+  asciiStream,
+  spectralTape,
   transcodeWindow,
   perforationLogic,
   rankSieve,

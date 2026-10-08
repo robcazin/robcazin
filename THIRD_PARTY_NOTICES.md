@@ -7,6 +7,10 @@ This project includes code from third-party sources under the following licenses
 Visualizers ported from the [iwrzwr-visual-archive](https://github.com/kaganin/iwrzwr-visual-archive) project by Kagan Yaldizkaya:
 
 - Spectrum Ribbon
+- Mono Wave
+- Silk Layers
+- Liquid Wave
+- Fine Spectrum
 - Phosphor Sweep
 - XY Dust
 - Phase Braid
@@ -14,6 +18,10 @@ Visualizers ported from the [iwrzwr-visual-archive](https://github.com/kaganin/i
 - Contour Memory
 - Packet Stitch
 - Teletext Pulse
+- Vector Scope
+- Wireframe Echo
+- ASCII Stream
+- Spectral Tape
 - Transcode Window
 - Perforation Logic
 - Rank Sieve
